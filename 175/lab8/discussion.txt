@@ -1,0 +1,6 @@
+1)the new hazard is the data hazard as values change in the pipeline aren't accounted for when exceptions occur.
+
+2) about an hour
+
+
+50/50

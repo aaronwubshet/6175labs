@@ -1,0 +1,57 @@
+1. What registers are read from and written to in each of the interface
+    methods of mkMyConflictFifo?
+
+notEmpty
+    read:empty
+    written:
+first
+    read:empty, data[deqP], deqP
+    written:
+deq
+    read:empty, deqP, enqP
+    written:deqP, empty, full
+notFull
+    read: full
+    written:
+enq
+    read:full, deqP, enqP
+    written:empty, full, enqP, data[enqP]
+clear
+    read:
+    written:enqP, deqP, full, empty
+
+
+
+2. Fill the conflict Matrix for mkMyConflictFifo.
+
+           notEmpty   first   deq   notFull   enq   clear
+         +----------+-------+-----+---------+-----+-------+
+notEmpty |     CF   |  CF   |  <  |    CF  |  <   |  <    |
+         +----------+-------+-----+---------+-----+-------+
+first    |    CF    |  CF   |  <  |  CF    | <    |  <    |
+         +----------+-------+-----+---------+-----+-------+
+deq      |     >    |  >    |  C  |  >     |  C   |  C    |
+         +----------+-------+-----+---------+-----+-------+
+notFull  |     CF   |  CF   |  <  |    CF  |  <   |  <    |
+         +----------+-------+-----+---------+-----+-------+
+enq      |    >     |   >   |  C  |   >    | C    |  C    |
+         +----------+-------+-----+---------+-----+-------+
+clear    |     >    |   >   |  C  |    >   |  C   |  C    |
+         +----------+-------+-----+---------+-----+-------+
+< = left hand side appears to happens before top (since hardware is parallel)
+> = top side  appears to happens before left hand side
+
+
+3. Which conflicts from mkMyConflictFifo do not match the conflict-free FIFO
+    scheduling constraints?
+	
+	Any purposed conflict between all methods not including clear should be
+conflict free. Clear should then come after which does not match the case for deq and enq with clear.
+
+
+4. In your design of the clear method in mkMyCFFifo, how did you force the
+    scheduling constraint {enq, deq} < clear?
+
+	I added a second condition on both enq and deq within the rule in order to prevent it from firing if clear called was also going to fire in that cycle.
+
+100%

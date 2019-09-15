@@ -1,0 +1,15 @@
+{
+    "options": {
+        "bsvdefines" : ["XILINX=1", "Kintex7", "PCIE", "PCIE2", "PcieHostInterface", "PhysAddrWidth=40", "PcieLanes=8",
+		       	"CONNECTAL_BITS_DEPENDENCES=hw/mkTop.bit", "CONNECTAL_RUN_SCRIPT=$(CONNECTALDIR)/scripts/run.pcietest"],
+        "os" : "ubuntu",
+        "partname" : "xc7k160tffg676-2",
+        "need_pcie" : "x7_gen2x8",
+        "TOP" : "PcieTop",
+        "constraints": [],
+        "implconstraints": ["constraints/xilinx/kc160g2.xdc"],
+        "runscript" : "run.pcietest",
+        "CONNECTALFLAGS" : ["--mainclockperiod=4", "--derivedclockperiod=4", "--pcieclockperiod=4"],
+        "rewireclockstring" : ""
+    }
+}

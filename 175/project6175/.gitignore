@@ -1,0 +1,4 @@
+*.sw?
+*~
+connectal/*
+fpgamake/*

@@ -1,0 +1,17 @@
+1) one-bit multiplexer uses at least 4 gates (my implementation used more, but I didn't realize the simplification until later). A 5-bit multiplexer uses 5 copies of the one bit multiplexer and thus uses 
+20 gates. A N-bit multiplexer therefore uses 4*N gates. 
+
+This is only true for a two way mux. If there were multiple inputs(i.e. a 4 way or 8 way mux) the number of gates would be 2^N for N inputs
+
+Are you sure about that? It seems to me that if I want a 2^n way mux for 1 bit signals, you can use two 2^(n-1)-way mux, for 1 bit signal, and a 2-way mux, right?
+So to double the number of input, I roughly double the number of gates plus a little bit. It seems like for 2^n inputs I need O(2^n) gates.
+
+2)The 8 bit ripple carry adder uses 8 full adders and thus requires 40 gates. The 8-bit carry select adder requires 3 4 bit full adder (60 gates), a 1 bit mux(4 gates), and a 4 bit mux(16 gates). This
+totals 80 gates.
+
+3) The RCA will take 8*A time and the CSA will take 4*A+M time.
+
+4) I spent approximately 6.5 hours on this lab(I do not have much programming experience).
+
+
+Total: 100%

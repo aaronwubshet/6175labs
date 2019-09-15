@@ -1,0 +1,9 @@
+Discussion Questions:
+
+1) The mkCFFifo implementation can enq and deq from Fifos at the same time allowing for higher throughput and fewer cycles to complete. The mkFifo implementation alternates between doing the outer two enq/deq operations and the inner enq/deq operations.
+
+2) If it is elastic, the modules will release outputs asyrchonously since modules will realse outputs whenever they are ready and the next stage is ready. Otherwise, if the stages fire at the same time they are part of an inelastic pipeline.
+
+3) About 5 hours.
+
+100%

@@ -1,0 +1,142 @@
+{
+    "options": {
+        "os" : "ubuntu",
+        "partname" : "xc7z020clg484-1",
+        "rewireclockstring" : "tclzynqrewireclock",
+        "TOP" : "XsimTop",
+	"bsvdefines": ["CnocTop", "XsimHostInterface", "PhysAddrWidth=40", "SIMULATION",
+		       	"CONNECTAL_BITS_DEPENDENCES=bsim"],
+        "CONNECTALFLAGS" : ["--mainclockperiod=20", "--derivedclockperiod=10"],
+        "need_pcie" : "unused"
+    },
+    "fmc": {
+    "CLK0_M2C_n": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "CLK0_M2C_p": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA00_n_CC": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA00_p_CC": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA01_n_CC": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA05_n": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA05_p": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA07_n": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA07_p": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA08_n": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA08_p": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA09_n": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA09_p": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA10_n": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA10_p": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA11_n": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA11_p": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA12_n": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA12_p": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA13_n": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA13_p": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA14_n": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA14_p": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA15_n": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA15_p": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA16_n": { "LOC": "ZZZ", "IOSTANDARD": "YY" },
+    "LA16_p": { "LOC": "ZZZ", "IOSTANDARD": "YY" }
+    },
+    "pins": {
+    "GPIO_sw_left":   {"PACKAGE_PIN": "XXXX","IOSTANDARD": "YYYY","slew": "ZZZZ","PIO_DIRECTION": "INPUT"},
+    "GPIO_sw_center": {"PACKAGE_PIN": "XXXX","IOSTANDARD": "YYYY","slew": "ZZZZ","PIO_DIRECTION": "INPUT"},
+    "GPIO_sw_right":  {"PACKAGE_PIN": "XXXX","IOSTANDARD": "YYYY","slew": "ZZZZ","PIO_DIRECTION": "INPUT"},
+    "GPIO_sw_down":   {"PACKAGE_PIN": "XXXX","IOSTANDARD": "YYYY","slew": "ZZZZ","PIO_DIRECTION": "INPUT"},
+    "GPIO_sw_up":     {"PACKAGE_PIN": "XXXX","IOSTANDARD": "YYYY","slew": "ZZZZ","PIO_DIRECTION": "INPUT"}
+    },
+    "pmoda" : {
+        "J1" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J2" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J3" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J4" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J7" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J8" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J9" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J10" : { "LOC" : "XX", "IOSTANDARD" : "YY"}
+    },
+    "pmodb" : {
+        "J1" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J2" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J3" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J4" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J7" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J8" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J9" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J10" : { "LOC" : "XX", "IOSTANDARD" : "YY"}
+    },
+    "pmodc" : {
+        "J1" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J2" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J3" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J4" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J7" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J8" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J9" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J10" : { "LOC" : "XX", "IOSTANDARD" : "YY"}
+    },
+    "pmodd" : {
+        "J1" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J2" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J3" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J4" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J7" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J8" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J9" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J10" : { "LOC" : "XX", "IOSTANDARD" : "YY"}
+    },
+    "pmode" : {
+        "J1" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J2" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J3" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J4" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J7" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J8" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J9" : { "LOC" : "XX", "IOSTANDARD" : "YY"},
+        "J10" : { "LOC" : "XX", "IOSTANDARD" : "YY"}
+    },
+    "leds" : {
+    	"L0" : {
+	     "LOC" : "XX",
+             "IOSTANDARD" : "YY",
+	     "PIO_DIRECTION" : "OUTPUT"
+	     },
+    	"L1" : {
+	     "LOC" : "XX",
+             "IOSTANDARD" : "YY",
+	     "PIO_DIRECTION" : "OUTPUT"
+	     },
+    	"L2" : {
+	     "LOC" : "XX",
+             "IOSTANDARD" : "YY",
+	     "PIO_DIRECTION" : "OUTPUT"
+	     },
+    	"L3" : {
+	     "LOC" : "XX",
+             "IOSTANDARD" : "YY",
+	     "PIO_DIRECTION" : "OUTPUT"
+	     },
+    	"L4" : {
+	     "LOC" : "XX",
+             "IOSTANDARD" : "YY",
+	     "PIO_DIRECTION" : "OUTPUT"
+	     },
+    	"L5" : {
+	     "LOC" : "XX",
+             "IOSTANDARD" : "YY",
+	     "PIO_DIRECTION" : "OUTPUT"
+	     },
+    	"L6" : {
+	     "LOC" : "XX",
+             "IOSTANDARD" : "YY",
+	     "PIO_DIRECTION" : "OUTPUT"
+	     },
+    	"L7" : {
+	     "LOC" : "XX",
+             "IOSTANDARD" : "YY",
+	     "PIO_DIRECTION" : "OUTPUT"
+	     }
+    }
+}
+
+

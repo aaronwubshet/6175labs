@@ -1,0 +1,47 @@
+6.175: Tutorial 1
+Tour of BSV objects
+Double write
+useful construction in BSV
+
+
+The only thing that exists is a module
+  register is the primitive module
+  rules and methods are elements of a module
+
+"=" is just naming (with types)
+module <- (something that returns module)
+"<-" is how you instantiate a module given the instructions to make that module
+
+Interface is the type used for modules
+
+Interface Adder;
+  any required methods
+endinterface
+
+module first_module(Adder);
+  required methods
+    functions
+  unique methods
+    functions
+  rules
+    functions
+endmodule
+module  other_module(Adder);
+  required methods
+    functions
+  unique methods
+    functions
+  rules
+    functions
+
+DOUBLE WRITE
+shadow effects on write methods/rules
+you cannot write to the same register twice within the same rule/method
+  use separate rules/methods
+
+Useful Types:
+Maybe
+Interface
+Vector
+Bit
+Bool

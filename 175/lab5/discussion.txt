@@ -1,0 +1,51 @@
+
+
+1) Benchmark vvadd 2408/2705 = .8902
+towers 6096/6507 = .9368
+qsort 123928/146038 = .8486
+multiply 20893/27007 = .77361
+median 4015/4733 = .8482
+2) cycles - insturctions = dead cycles = # of mispredictions
+1- (# of mispredictions /instructions) = next address predictor accuracy 
+vvadd .87666
+towers .93257
+qsort .821589
+multiply .707366
+median .8211706
+
+3) vvadd 2408/2409 = .99958 Improved by .1093 IPC
+towers 6096/6354 = .95939 Improved by .022595 IPC
+qsort 123928/140255 = .8835 Improved by .03499 IPC
+multiply 20893/21481 = .97262 Improved by .19901 IPC
+median 4015/4626 = .86792 Improved by .01972 IPC
+
+4) 
+without BTB
+bht
+C:1210
+I:1010
+.83471
+j
+C:3506
+I:1806
+.51511
+ras
+C:413
+I:286
+.69249
+
+with BTB
+bht
+Cycle: 1311
+Instr: 1010
+.7704
+j
+C: 1825
+I: 1806
+.98958
+ras
+C:361
+I:286
+.79224377i
+
+Adding BTB makes j and ras have better performace, but worse performance for bht 

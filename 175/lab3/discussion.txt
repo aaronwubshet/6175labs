@@ -1,0 +1,21 @@
+1. No, the test bench failed, therefore signed and unsigned multiplication are not the same.
+
+2. The error is the complier complaining that multiply_unsigned is unbound/undeclared. The original code explicitly declares unsigned which is hte first arguement to mkTbMulFunction and uses that to infer the bit size of the next function that will be evaluated with the same inputs. This is why you only need one to be explicitly declared(but it must be the first one).
+
+3. It is an unsigned multiplier. It passes the test when compared against an unsigned multiplier
+
+4.
+Current Bits | Previous Bit | Original Booth Encoding | Radix-4 Booth Encoding
+-------------+--------------+-------------------------+-----------------------
+    00       |      0       |          00             |        00   
+    00       |      1       |          0+             |         0+  
+    01       |      0       |           +-            |         0+
+    01       |      1       |           +0            |          +0 
+    10       |      0       |           -0            |           -0
+    10       |      1       |            -+           |          0- 
+    11       |      0       |            0-           |           0-
+    11       |      1       |            00           |           00
+
+5. No, it would not. With a radix-8, you are required to shift by a constant times a power of 2 which can't be represented in the Booth multiplier scheme.
+
+100%

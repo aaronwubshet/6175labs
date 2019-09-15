@@ -1,0 +1,2387 @@
+make -C bluesim --no-print-directory run
+/afs/athena.mit.edu/user/a/w/awubshet/Documents/175/lab6/connectal/scripts/bsvdepend.py -o obj/Makefile -D SIXSTAGEBHT -D ConnectalVersion=17.10.1 -D NumberOfMasters=1 -D PinType=Empty -D PinTypeInclude=Misc -D NumberOfUserTiles=1 -D SlaveDataBusWidth=32 -D SlaveControlAddrWidth=5 -D BurstLenSize=10 -D project_dir=/afs/athena.mit.edu/user/a/w/awubshet/Documents/175/lab6/bluesim -D MainClockPeriod=20 -D DerivedClockPeriod=10.000000 -D CnocTop -D XsimHostInterface -D PhysAddrWidth=40 -D SIMULATION -D CONNECTAL_BITS_DEPENDENCES=bsim -D BOARD_bluesim --bsvpath=/afs/athena.mit.edu/user/a/w/awubshet/Documents/175/lab6/src/includes:/afs/athena.mit.edu/user/a/w/awubshet/Documents/175/lab6/connectal/bsv:/afs/athena.mit.edu/user/a/w/awubshet/Documents/175/lab6/bluesim/generatedbsv:/afs/athena.mit.edu/user/a/w/awubshet/Documents/175/lab6:/:/afs/athena.mit.edu/user/a/w/awubshet/Documents/175/lab6/src:/afs/athena.mit.edu/user/a/w/awubshet/Documents/175/lab6/connectal/lib/bsv:/afs/athena.mit.edu/user/a/w/awubshet/Documents/175/lab6/connectal/generated/xilinx:/afs/athena.mit.edu/user/a/w/awubshet/Documents/175/lab6/connectal/generated/altera --all /afs/athena.mit.edu/user/a/w/awubshet/Documents/175/lab6/connectal/bsv/XsimTop.bsv
+LD_PRELOAD=libSegFault.so SEGFAULT_USE_ALTSTACK=1 SEGFAULT_OUTPUT_NAME=bin/bsimexe-segv-output.txt  ./bin/ubuntu.exe ; retcode=$?; exit $retcode
+Start testbench:
+XsimTop starting
+Request 00000000 464c457f
+Request 00000004 00010101
+Request 00000008 00000000
+Request 0000000c 00000000
+Request 00000010 00f30002
+Request 00000014 00000001
+Request 00000018 00000200
+Request 0000001c 00000034
+Request 00000020 00000778
+Request 00000024 00000000
+Request 00000028 00200034
+Request 0000002c 00280001
+Request 00000030 00020005
+Request 00000034 00000001
+Request 00000038 00000000
+Request 0000003c 00000000
+Request 00000040 00000000
+Request 00000044 00000390
+Request 00000048 00000390
+Request 0000004c 00000005
+Request 00000050 00001000
+Request 00000054 00000000
+Request 00000058 00000000
+Request 0000005c 00000000
+Request 00000060 00000000
+Request 00000064 00000000
+Request 00000068 00000000
+Request 0000006c 00000000
+Request 00000070 00000000
+Request 00000074 00000000
+Request 00000078 00000000
+Request 0000007c 00000000
+Request 00000080 00000000
+Request 00000084 00000000
+Request 00000088 00000000
+Request 0000008c 00000000
+Request 00000090 00000000
+Request 00000094 00000000
+Request 00000098 00000000
+Request 0000009c 00000000
+Request 000000a0 00000000
+Request 000000a4 00000000
+Request 000000a8 00000000
+Request 000000ac 00000000
+Request 000000b0 00000000
+Request 000000b4 00000000
+Request 000000b8 00000000
+Request 000000bc 00000000
+Request 000000c0 00000000
+Request 000000c4 00000000
+Request 000000c8 00000000
+Request 000000cc 00000000
+Request 000000d0 00000000
+Request 000000d4 00000000
+Request 000000d8 00000000
+Request 000000dc 00000000
+Request 000000e0 00000000
+Request 000000e4 00000000
+Request 000000e8 00000000
+Request 000000ec 00000000
+Request 000000f0 00000000
+Request 000000f4 00000000
+Request 000000f8 00000000
+Request 000000fc 00000000
+Request 00000100 00000000
+Request 00000104 00000000
+Request 00000108 00000000
+Request 0000010c 00000000
+Request 00000110 00000000
+Request 00000114 00000000
+Request 00000118 00000000
+Request 0000011c 00000000
+Request 00000120 00000000
+Request 00000124 00000000
+Request 00000128 00000000
+Request 0000012c 00000000
+Request 00000130 00000000
+Request 00000134 00000000
+Request 00000138 00000000
+Request 0000013c 00000000
+Request 00000140 00000000
+Request 00000144 00000000
+Request 00000148 00000000
+Request 0000014c 00000000
+Request 00000150 00000000
+Request 00000154 00000000
+Request 00000158 00000000
+Request 0000015c 00000000
+Request 00000160 00000000
+Request 00000164 00000000
+Request 00000168 00000000
+Request 0000016c 00000000
+Request 00000170 00000000
+Request 00000174 00000000
+Request 00000178 00000000
+Request 0000017c 00000000
+Request 00000180 00000000
+Request 00000184 00000000
+Request 00000188 00000000
+Request 0000018c 00000000
+Request 00000190 00000000
+Request 00000194 00000000
+Request 00000198 00000000
+Request 0000019c 00000000
+Request 000001a0 00000000
+Request 000001a4 00000000
+Request 000001a8 00000000
+Request 000001ac 00000000
+Request 000001b0 00000000
+Request 000001b4 00000000
+Request 000001b8 00000000
+Request 000001bc 00000000
+Request 000001c0 00000000
+Request 000001c4 00000000
+Request 000001c8 00000000
+Request 000001cc 00000000
+Request 000001d0 00000000
+Request 000001d4 00000000
+Request 000001d8 00000000
+Request 000001dc 00000000
+Request 000001e0 00000000
+Request 000001e4 00000000
+Request 000001e8 00000000
+Request 000001ec 00000000
+Request 000001f0 00000000
+Request 000001f4 00000000
+Request 000001f8 00000000
+Request 000001fc 00000000
+Request 00000200 00000e13
+Request 00000204 0f80006f
+Request 00000208 00100e13
+Request 0000020c 0f80006f
+Request 00000210 02000e13
+Request 00000214 ff9ff06f
+Request 00000218 01f00e13
+Request 0000021c ff9ff06f
+Request 00000220 01e00e13
+Request 00000224 ff9ff06f
+Request 00000228 01d00e13
+Request 0000022c ff9ff06f
+Request 00000230 01c00e13
+Request 00000234 ff9ff06f
+Request 00000238 01b00e13
+Request 0000023c ff9ff06f
+Request 00000240 01a00e13
+Request 00000244 ff9ff06f
+Request 00000248 01900e13
+Request 0000024c ff9ff06f
+Request 00000250 01800e13
+Request 00000254 ff9ff06f
+Request 00000258 01700e13
+Request 0000025c ff9ff06f
+Request 00000260 01600e13
+Request 00000264 ff9ff06f
+Request 00000268 01500e13
+Request 0000026c ff9ff06f
+Request 00000270 01400e13
+Request 00000274 ff9ff06f
+Request 00000278 01300e13
+Request 0000027c ff9ff06f
+Request 00000280 01200e13
+Request 00000284 ff9ff06f
+Request 00000288 01100e13
+Request 0000028c ff9ff06f
+Request 00000290 01000e13
+Request 00000294 ff9ff06f
+Request 00000298 00f00e13
+Request 0000029c ff9ff06f
+Request 000002a0 00e00e13
+Request 000002a4 ff9ff06f
+Request 000002a8 00d00e13
+Request 000002ac ff9ff06f
+Request 000002b0 00c00e13
+Request 000002b4 ff9ff06f
+Request 000002b8 00b00e13
+Request 000002bc ff9ff06f
+Request 000002c0 00a00e13
+Request 000002c4 ff9ff06f
+Request 000002c8 00900e13
+Request 000002cc ff9ff06f
+Request 000002d0 00800e13
+Request 000002d4 ff9ff06f
+Request 000002d8 00700e13
+Request 000002dc ff9ff06f
+Request 000002e0 00600e13
+Request 000002e4 ff9ff06f
+Request 000002e8 00500e13
+Request 000002ec ff9ff06f
+Request 000002f0 00400e13
+Request 000002f4 ff9ff06f
+Request 000002f8 00300e13
+Request 000002fc ff9ff06f
+Request 00000300 00200e13
+Request 00000304 000e0a63
+Request 00000308 00c0006f
+Request 0000030c 01c01663
+Request 00000310 00100e13
+Request 00000314 00c0006f
+Request 00000318 00000e13
+Request 0000031c 0040006f
+Request 00000320 c0002573
+Request 00000324 c02025f3
+Request 00000328 01051613
+Request 0000032c 01065613
+Request 00000330 000206b7
+Request 00000334 00d666b3
+Request 00000338 78069073
+Request 0000033c 01055613
+Request 00000340 000306b7
+Request 00000344 00d666b3
+Request 00000348 78069073
+Request 0000034c 00010637
+Request 00000350 00a60613
+Request 00000354 78061073
+Request 00000358 01059613
+Request 0000035c 01065613
+Request 00000360 000201b7
+Request 00000364 003661b3
+Request 00000368 78019073
+Request 0000036c 0105d613
+Request 00000370 000301b7
+Request 00000374 003661b3
+Request 00000378 78019073
+Request 0000037c 00010637
+Request 00000380 00a60613
+Request 00000384 78061073
+Request 00000388 780e1073
+Request 0000038c 0000006f
+[init_xsim:61]
+[init_xsim:61]
+[init_xsim:61]
+Processor startedDone memory initialization
+Received software req to start pc
+
+Start cpu
+
+Cycle          0 ----------------------------------------------------
+IF is happening PC       512
+
+Cycle          1 ----------------------------------------------------
+IF is happening PC       516
+decoding is starting at pc:       512
+memory responds with insturction at pc:       512
+decode is happening pc:       512
+execute epochs match at decode pc:       512
+register fetch at pc:       512
+execute epochs match at pc:       512
+instruction is not poisoned. pc is:       512
+instruction is not stalled at pc:       512
+
+Cycle          2 ----------------------------------------------------
+IF is happening PC       520
+decoding is starting at pc:       516
+memory responds with insturction at pc:       516
+decode is happening pc:       516
+execute epochs match at decode pc:       516
+register fetch at pc:       516
+execute epochs match at pc:       516
+instruction is not poisoned. pc is:       516
+instruction is not stalled at pc:       516
+
+Cycle          3 ----------------------------------------------------
+IF is happening PC       764
+decoding is starting at pc:       520
+memory responds with insturction at pc:       520
+decode is happening pc:       520
+execute epochs match at decode pc:       520
+execute stage is firing at pc:       512
+execute epochs match at pc:       512
+instruction is not poisoned at pc:       512
+entering mem at pc:       512
+instruction is fine at pc:       512
+exitting mem stage at pc:       512
+
+Cycle          4 ----------------------------------------------------
+IF is happening PC       768
+decoding is starting at pc:       764
+memory responds with insturction at pc:       764
+decode is happening pc:       764
+execute epochs match at decode pc:       764
+execute stage is firing at pc:       516
+execute epochs match at pc:       516
+instruction is a jump and not poisoned at pc:       516
+instruction is not poisoned at pc:       516
+register fetch at pc:       764
+execute epochs match at pc:       764
+instruction is not poisoned. pc is:       764
+instruction is not stalled at pc:       764
+entering mem at pc:       516
+instruction is fine at pc:       516
+exitting mem stage at pc:       516
+
+Cycle          5 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       756
+above instruction has a valid desitation
+writeback is exiting
+IF is happening PC       756
+decoding is starting at pc:       768
+memory responds with insturction at pc:       768
+decode is happening pc:       768
+execute epochs match at decode pc:       768
+
+Cycle          6 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       760
+writeback is exiting
+IF is happening PC       760
+decoding is starting at pc:       756
+memory responds with insturction at pc:       756
+decode is happening pc:       756
+execute epochs match at decode pc:       756
+execute stage is firing at pc:       764
+execute epochs match at pc:       764
+instruction is a jump and not poisoned at pc:       764
+instruction is not poisoned at pc:       764
+register fetch at pc:       756
+execute epochs match at pc:       756
+instruction is not poisoned. pc is:       756
+instruction is not stalled at pc:       756
+entering mem at pc:       764
+instruction is fine at pc:       764
+exitting mem stage at pc:       764
+
+Cycle          7 ----------------------------------------------------
+IF is happening PC       748
+decoding is starting at pc:       760
+memory responds with insturction at pc:       760
+decode is happening pc:       760
+execute epochs match at decode pc:       760
+
+Cycle          8 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       752
+writeback is exiting
+IF is happening PC       752
+decoding is starting at pc:       748
+memory responds with insturction at pc:       748
+decode is happening pc:       748
+execute epochs match at decode pc:       748
+execute stage is firing at pc:       756
+execute epochs match at pc:       756
+instruction is a jump and not poisoned at pc:       756
+instruction is not poisoned at pc:       756
+register fetch at pc:       748
+execute epochs match at pc:       748
+instruction is not poisoned. pc is:       748
+instruction is not stalled at pc:       748
+entering mem at pc:       756
+instruction is fine at pc:       756
+exitting mem stage at pc:       756
+
+Cycle          9 ----------------------------------------------------
+IF is happening PC       740
+decoding is starting at pc:       752
+memory responds with insturction at pc:       752
+decode is happening pc:       752
+execute epochs match at decode pc:       752
+
+Cycle         10 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       744
+writeback is exiting
+IF is happening PC       744
+decoding is starting at pc:       740
+memory responds with insturction at pc:       740
+decode is happening pc:       740
+execute epochs match at decode pc:       740
+execute stage is firing at pc:       748
+execute epochs match at pc:       748
+instruction is a jump and not poisoned at pc:       748
+instruction is not poisoned at pc:       748
+register fetch at pc:       740
+execute epochs match at pc:       740
+instruction is not poisoned. pc is:       740
+instruction is not stalled at pc:       740
+entering mem at pc:       748
+instruction is fine at pc:       748
+exitting mem stage at pc:       748
+
+Cycle         11 ----------------------------------------------------
+IF is happening PC       732
+decoding is starting at pc:       744
+memory responds with insturction at pc:       744
+decode is happening pc:       744
+execute epochs match at decode pc:       744
+
+Cycle         12 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       736
+writeback is exiting
+IF is happening PC       736
+decoding is starting at pc:       732
+memory responds with insturction at pc:       732
+decode is happening pc:       732
+execute epochs match at decode pc:       732
+execute stage is firing at pc:       740
+execute epochs match at pc:       740
+instruction is a jump and not poisoned at pc:       740
+instruction is not poisoned at pc:       740
+register fetch at pc:       732
+execute epochs match at pc:       732
+instruction is not poisoned. pc is:       732
+instruction is not stalled at pc:       732
+entering mem at pc:       740
+instruction is fine at pc:       740
+exitting mem stage at pc:       740
+
+Cycle         13 ----------------------------------------------------
+IF is happening PC       724
+decoding is starting at pc:       736
+memory responds with insturction at pc:       736
+decode is happening pc:       736
+execute epochs match at decode pc:       736
+
+Cycle         14 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       728
+writeback is exiting
+IF is happening PC       728
+decoding is starting at pc:       724
+memory responds with insturction at pc:       724
+decode is happening pc:       724
+execute epochs match at decode pc:       724
+execute stage is firing at pc:       732
+execute epochs match at pc:       732
+instruction is a jump and not poisoned at pc:       732
+instruction is not poisoned at pc:       732
+register fetch at pc:       724
+execute epochs match at pc:       724
+instruction is not poisoned. pc is:       724
+instruction is not stalled at pc:       724
+entering mem at pc:       732
+instruction is fine at pc:       732
+exitting mem stage at pc:       732
+
+Cycle         15 ----------------------------------------------------
+IF is happening PC       716
+decoding is starting at pc:       728
+memory responds with insturction at pc:       728
+decode is happening pc:       728
+execute epochs match at decode pc:       728
+
+Cycle         16 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       720
+writeback is exiting
+IF is happening PC       720
+decoding is starting at pc:       716
+memory responds with insturction at pc:       716
+decode is happening pc:       716
+execute epochs match at decode pc:       716
+execute stage is firing at pc:       724
+execute epochs match at pc:       724
+instruction is a jump and not poisoned at pc:       724
+instruction is not poisoned at pc:       724
+register fetch at pc:       716
+execute epochs match at pc:       716
+instruction is not poisoned. pc is:       716
+instruction is not stalled at pc:       716
+entering mem at pc:       724
+instruction is fine at pc:       724
+exitting mem stage at pc:       724
+
+Cycle         17 ----------------------------------------------------
+IF is happening PC       708
+decoding is starting at pc:       720
+memory responds with insturction at pc:       720
+decode is happening pc:       720
+execute epochs match at decode pc:       720
+
+Cycle         18 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       712
+writeback is exiting
+IF is happening PC       712
+decoding is starting at pc:       708
+memory responds with insturction at pc:       708
+decode is happening pc:       708
+execute epochs match at decode pc:       708
+execute stage is firing at pc:       716
+execute epochs match at pc:       716
+instruction is a jump and not poisoned at pc:       716
+instruction is not poisoned at pc:       716
+register fetch at pc:       708
+execute epochs match at pc:       708
+instruction is not poisoned. pc is:       708
+instruction is not stalled at pc:       708
+entering mem at pc:       716
+instruction is fine at pc:       716
+exitting mem stage at pc:       716
+
+Cycle         19 ----------------------------------------------------
+IF is happening PC       700
+decoding is starting at pc:       712
+memory responds with insturction at pc:       712
+decode is happening pc:       712
+execute epochs match at decode pc:       712
+
+Cycle         20 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       704
+writeback is exiting
+IF is happening PC       704
+decoding is starting at pc:       700
+memory responds with insturction at pc:       700
+decode is happening pc:       700
+execute epochs match at decode pc:       700
+execute stage is firing at pc:       708
+execute epochs match at pc:       708
+instruction is a jump and not poisoned at pc:       708
+instruction is not poisoned at pc:       708
+register fetch at pc:       700
+execute epochs match at pc:       700
+instruction is not poisoned. pc is:       700
+instruction is not stalled at pc:       700
+entering mem at pc:       708
+instruction is fine at pc:       708
+exitting mem stage at pc:       708
+
+Cycle         21 ----------------------------------------------------
+IF is happening PC       692
+decoding is starting at pc:       704
+memory responds with insturction at pc:       704
+decode is happening pc:       704
+execute epochs match at decode pc:       704
+
+Cycle         22 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       696
+writeback is exiting
+IF is happening PC       696
+decoding is starting at pc:       692
+memory responds with insturction at pc:       692
+decode is happening pc:       692
+execute epochs match at decode pc:       692
+execute stage is firing at pc:       700
+execute epochs match at pc:       700
+instruction is a jump and not poisoned at pc:       700
+instruction is not poisoned at pc:       700
+register fetch at pc:       692
+execute epochs match at pc:       692
+instruction is not poisoned. pc is:       692
+instruction is not stalled at pc:       692
+entering mem at pc:       700
+instruction is fine at pc:       700
+exitting mem stage at pc:       700
+
+Cycle         23 ----------------------------------------------------
+IF is happening PC       684
+decoding is starting at pc:       696
+memory responds with insturction at pc:       696
+decode is happening pc:       696
+execute epochs match at decode pc:       696
+
+Cycle         24 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       688
+writeback is exiting
+IF is happening PC       688
+decoding is starting at pc:       684
+memory responds with insturction at pc:       684
+decode is happening pc:       684
+execute epochs match at decode pc:       684
+execute stage is firing at pc:       692
+execute epochs match at pc:       692
+instruction is a jump and not poisoned at pc:       692
+instruction is not poisoned at pc:       692
+register fetch at pc:       684
+execute epochs match at pc:       684
+instruction is not poisoned. pc is:       684
+instruction is not stalled at pc:       684
+entering mem at pc:       692
+instruction is fine at pc:       692
+exitting mem stage at pc:       692
+
+Cycle         25 ----------------------------------------------------
+IF is happening PC       676
+decoding is starting at pc:       688
+memory responds with insturction at pc:       688
+decode is happening pc:       688
+execute epochs match at decode pc:       688
+
+Cycle         26 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       680
+writeback is exiting
+IF is happening PC       680
+decoding is starting at pc:       676
+memory responds with insturction at pc:       676
+decode is happening pc:       676
+execute epochs match at decode pc:       676
+execute stage is firing at pc:       684
+execute epochs match at pc:       684
+instruction is a jump and not poisoned at pc:       684
+instruction is not poisoned at pc:       684
+register fetch at pc:       676
+execute epochs match at pc:       676
+instruction is not poisoned. pc is:       676
+instruction is not stalled at pc:       676
+entering mem at pc:       684
+instruction is fine at pc:       684
+exitting mem stage at pc:       684
+
+Cycle         27 ----------------------------------------------------
+IF is happening PC       668
+decoding is starting at pc:       680
+memory responds with insturction at pc:       680
+decode is happening pc:       680
+execute epochs match at decode pc:       680
+
+Cycle         28 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       672
+writeback is exiting
+IF is happening PC       672
+decoding is starting at pc:       668
+memory responds with insturction at pc:       668
+decode is happening pc:       668
+execute epochs match at decode pc:       668
+execute stage is firing at pc:       676
+execute epochs match at pc:       676
+instruction is a jump and not poisoned at pc:       676
+instruction is not poisoned at pc:       676
+register fetch at pc:       668
+execute epochs match at pc:       668
+instruction is not poisoned. pc is:       668
+instruction is not stalled at pc:       668
+entering mem at pc:       676
+instruction is fine at pc:       676
+exitting mem stage at pc:       676
+
+Cycle         29 ----------------------------------------------------
+IF is happening PC       660
+decoding is starting at pc:       672
+memory responds with insturction at pc:       672
+decode is happening pc:       672
+execute epochs match at decode pc:       672
+
+Cycle         30 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       664
+writeback is exiting
+IF is happening PC       664
+decoding is starting at pc:       660
+memory responds with insturction at pc:       660
+decode is happening pc:       660
+execute epochs match at decode pc:       660
+execute stage is firing at pc:       668
+execute epochs match at pc:       668
+instruction is a jump and not poisoned at pc:       668
+instruction is not poisoned at pc:       668
+register fetch at pc:       660
+execute epochs match at pc:       660
+instruction is not poisoned. pc is:       660
+instruction is not stalled at pc:       660
+entering mem at pc:       668
+instruction is fine at pc:       668
+exitting mem stage at pc:       668
+
+Cycle         31 ----------------------------------------------------
+IF is happening PC       652
+decoding is starting at pc:       664
+memory responds with insturction at pc:       664
+decode is happening pc:       664
+execute epochs match at decode pc:       664
+
+Cycle         32 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       656
+writeback is exiting
+IF is happening PC       656
+decoding is starting at pc:       652
+memory responds with insturction at pc:       652
+decode is happening pc:       652
+execute epochs match at decode pc:       652
+execute stage is firing at pc:       660
+execute epochs match at pc:       660
+instruction is a jump and not poisoned at pc:       660
+instruction is not poisoned at pc:       660
+register fetch at pc:       652
+execute epochs match at pc:       652
+instruction is not poisoned. pc is:       652
+instruction is not stalled at pc:       652
+entering mem at pc:       660
+instruction is fine at pc:       660
+exitting mem stage at pc:       660
+
+Cycle         33 ----------------------------------------------------
+IF is happening PC       644
+decoding is starting at pc:       656
+memory responds with insturction at pc:       656
+decode is happening pc:       656
+execute epochs match at decode pc:       656
+
+Cycle         34 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       648
+writeback is exiting
+IF is happening PC       648
+decoding is starting at pc:       644
+memory responds with insturction at pc:       644
+decode is happening pc:       644
+execute epochs match at decode pc:       644
+execute stage is firing at pc:       652
+execute epochs match at pc:       652
+instruction is a jump and not poisoned at pc:       652
+instruction is not poisoned at pc:       652
+register fetch at pc:       644
+execute epochs match at pc:       644
+instruction is not poisoned. pc is:       644
+instruction is not stalled at pc:       644
+entering mem at pc:       652
+instruction is fine at pc:       652
+exitting mem stage at pc:       652
+
+Cycle         35 ----------------------------------------------------
+IF is happening PC       636
+decoding is starting at pc:       648
+memory responds with insturction at pc:       648
+decode is happening pc:       648
+execute epochs match at decode pc:       648
+
+Cycle         36 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       640
+writeback is exiting
+IF is happening PC       640
+decoding is starting at pc:       636
+memory responds with insturction at pc:       636
+decode is happening pc:       636
+execute epochs match at decode pc:       636
+execute stage is firing at pc:       644
+execute epochs match at pc:       644
+instruction is a jump and not poisoned at pc:       644
+instruction is not poisoned at pc:       644
+register fetch at pc:       636
+execute epochs match at pc:       636
+instruction is not poisoned. pc is:       636
+instruction is not stalled at pc:       636
+entering mem at pc:       644
+instruction is fine at pc:       644
+exitting mem stage at pc:       644
+
+Cycle         37 ----------------------------------------------------
+IF is happening PC       628
+decoding is starting at pc:       640
+memory responds with insturction at pc:       640
+decode is happening pc:       640
+execute epochs match at decode pc:       640
+
+Cycle         38 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       632
+writeback is exiting
+IF is happening PC       632
+decoding is starting at pc:       628
+memory responds with insturction at pc:       628
+decode is happening pc:       628
+execute epochs match at decode pc:       628
+execute stage is firing at pc:       636
+execute epochs match at pc:       636
+instruction is a jump and not poisoned at pc:       636
+instruction is not poisoned at pc:       636
+register fetch at pc:       628
+execute epochs match at pc:       628
+instruction is not poisoned. pc is:       628
+instruction is not stalled at pc:       628
+entering mem at pc:       636
+instruction is fine at pc:       636
+exitting mem stage at pc:       636
+
+Cycle         39 ----------------------------------------------------
+IF is happening PC       620
+decoding is starting at pc:       632
+memory responds with insturction at pc:       632
+decode is happening pc:       632
+execute epochs match at decode pc:       632
+
+Cycle         40 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       624
+writeback is exiting
+IF is happening PC       624
+decoding is starting at pc:       620
+memory responds with insturction at pc:       620
+decode is happening pc:       620
+execute epochs match at decode pc:       620
+execute stage is firing at pc:       628
+execute epochs match at pc:       628
+instruction is a jump and not poisoned at pc:       628
+instruction is not poisoned at pc:       628
+register fetch at pc:       620
+execute epochs match at pc:       620
+instruction is not poisoned. pc is:       620
+instruction is not stalled at pc:       620
+entering mem at pc:       628
+instruction is fine at pc:       628
+exitting mem stage at pc:       628
+
+Cycle         41 ----------------------------------------------------
+IF is happening PC       612
+decoding is starting at pc:       624
+memory responds with insturction at pc:       624
+decode is happening pc:       624
+execute epochs match at decode pc:       624
+
+Cycle         42 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       616
+writeback is exiting
+IF is happening PC       616
+decoding is starting at pc:       612
+memory responds with insturction at pc:       612
+decode is happening pc:       612
+execute epochs match at decode pc:       612
+execute stage is firing at pc:       620
+execute epochs match at pc:       620
+instruction is a jump and not poisoned at pc:       620
+instruction is not poisoned at pc:       620
+register fetch at pc:       612
+execute epochs match at pc:       612
+instruction is not poisoned. pc is:       612
+instruction is not stalled at pc:       612
+entering mem at pc:       620
+instruction is fine at pc:       620
+exitting mem stage at pc:       620
+
+Cycle         43 ----------------------------------------------------
+IF is happening PC       604
+decoding is starting at pc:       616
+memory responds with insturction at pc:       616
+decode is happening pc:       616
+execute epochs match at decode pc:       616
+
+Cycle         44 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       608
+writeback is exiting
+IF is happening PC       608
+decoding is starting at pc:       604
+memory responds with insturction at pc:       604
+decode is happening pc:       604
+execute epochs match at decode pc:       604
+execute stage is firing at pc:       612
+execute epochs match at pc:       612
+instruction is a jump and not poisoned at pc:       612
+instruction is not poisoned at pc:       612
+register fetch at pc:       604
+execute epochs match at pc:       604
+instruction is not poisoned. pc is:       604
+instruction is not stalled at pc:       604
+entering mem at pc:       612
+instruction is fine at pc:       612
+exitting mem stage at pc:       612
+
+Cycle         45 ----------------------------------------------------
+IF is happening PC       596
+decoding is starting at pc:       608
+memory responds with insturction at pc:       608
+decode is happening pc:       608
+execute epochs match at decode pc:       608
+
+Cycle         46 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       600
+writeback is exiting
+IF is happening PC       600
+decoding is starting at pc:       596
+memory responds with insturction at pc:       596
+decode is happening pc:       596
+execute epochs match at decode pc:       596
+execute stage is firing at pc:       604
+execute epochs match at pc:       604
+instruction is a jump and not poisoned at pc:       604
+instruction is not poisoned at pc:       604
+register fetch at pc:       596
+execute epochs match at pc:       596
+instruction is not poisoned. pc is:       596
+instruction is not stalled at pc:       596
+entering mem at pc:       604
+instruction is fine at pc:       604
+exitting mem stage at pc:       604
+
+Cycle         47 ----------------------------------------------------
+IF is happening PC       588
+decoding is starting at pc:       600
+memory responds with insturction at pc:       600
+decode is happening pc:       600
+execute epochs match at decode pc:       600
+
+Cycle         48 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       592
+writeback is exiting
+IF is happening PC       592
+decoding is starting at pc:       588
+memory responds with insturction at pc:       588
+decode is happening pc:       588
+execute epochs match at decode pc:       588
+execute stage is firing at pc:       596
+execute epochs match at pc:       596
+instruction is a jump and not poisoned at pc:       596
+instruction is not poisoned at pc:       596
+register fetch at pc:       588
+execute epochs match at pc:       588
+instruction is not poisoned. pc is:       588
+instruction is not stalled at pc:       588
+entering mem at pc:       596
+instruction is fine at pc:       596
+exitting mem stage at pc:       596
+
+Cycle         49 ----------------------------------------------------
+IF is happening PC       580
+decoding is starting at pc:       592
+memory responds with insturction at pc:       592
+decode is happening pc:       592
+execute epochs match at decode pc:       592
+
+Cycle         50 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       584
+writeback is exiting
+IF is happening PC       584
+decoding is starting at pc:       580
+memory responds with insturction at pc:       580
+decode is happening pc:       580
+execute epochs match at decode pc:       580
+execute stage is firing at pc:       588
+execute epochs match at pc:       588
+instruction is a jump and not poisoned at pc:       588
+instruction is not poisoned at pc:       588
+register fetch at pc:       580
+execute epochs match at pc:       580
+instruction is not poisoned. pc is:       580
+instruction is not stalled at pc:       580
+entering mem at pc:       588
+instruction is fine at pc:       588
+exitting mem stage at pc:       588
+
+Cycle         51 ----------------------------------------------------
+IF is happening PC       572
+decoding is starting at pc:       584
+memory responds with insturction at pc:       584
+decode is happening pc:       584
+execute epochs match at decode pc:       584
+
+Cycle         52 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       576
+writeback is exiting
+IF is happening PC       576
+decoding is starting at pc:       572
+memory responds with insturction at pc:       572
+decode is happening pc:       572
+execute epochs match at decode pc:       572
+execute stage is firing at pc:       580
+execute epochs match at pc:       580
+instruction is a jump and not poisoned at pc:       580
+instruction is not poisoned at pc:       580
+register fetch at pc:       572
+execute epochs match at pc:       572
+instruction is not poisoned. pc is:       572
+instruction is not stalled at pc:       572
+entering mem at pc:       580
+instruction is fine at pc:       580
+exitting mem stage at pc:       580
+
+Cycle         53 ----------------------------------------------------
+IF is happening PC       564
+decoding is starting at pc:       576
+memory responds with insturction at pc:       576
+decode is happening pc:       576
+execute epochs match at decode pc:       576
+
+Cycle         54 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       568
+writeback is exiting
+IF is happening PC       568
+decoding is starting at pc:       564
+memory responds with insturction at pc:       564
+decode is happening pc:       564
+execute epochs match at decode pc:       564
+execute stage is firing at pc:       572
+execute epochs match at pc:       572
+instruction is a jump and not poisoned at pc:       572
+instruction is not poisoned at pc:       572
+register fetch at pc:       564
+execute epochs match at pc:       564
+instruction is not poisoned. pc is:       564
+instruction is not stalled at pc:       564
+entering mem at pc:       572
+instruction is fine at pc:       572
+exitting mem stage at pc:       572
+
+Cycle         55 ----------------------------------------------------
+IF is happening PC       556
+decoding is starting at pc:       568
+memory responds with insturction at pc:       568
+decode is happening pc:       568
+execute epochs match at decode pc:       568
+
+Cycle         56 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       560
+writeback is exiting
+IF is happening PC       560
+decoding is starting at pc:       556
+memory responds with insturction at pc:       556
+decode is happening pc:       556
+execute epochs match at decode pc:       556
+execute stage is firing at pc:       564
+execute epochs match at pc:       564
+instruction is a jump and not poisoned at pc:       564
+instruction is not poisoned at pc:       564
+register fetch at pc:       556
+execute epochs match at pc:       556
+instruction is not poisoned. pc is:       556
+instruction is not stalled at pc:       556
+entering mem at pc:       564
+instruction is fine at pc:       564
+exitting mem stage at pc:       564
+
+Cycle         57 ----------------------------------------------------
+IF is happening PC       548
+decoding is starting at pc:       560
+memory responds with insturction at pc:       560
+decode is happening pc:       560
+execute epochs match at decode pc:       560
+
+Cycle         58 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       552
+writeback is exiting
+IF is happening PC       552
+decoding is starting at pc:       548
+memory responds with insturction at pc:       548
+decode is happening pc:       548
+execute epochs match at decode pc:       548
+execute stage is firing at pc:       556
+execute epochs match at pc:       556
+instruction is a jump and not poisoned at pc:       556
+instruction is not poisoned at pc:       556
+register fetch at pc:       548
+execute epochs match at pc:       548
+instruction is not poisoned. pc is:       548
+instruction is not stalled at pc:       548
+entering mem at pc:       556
+instruction is fine at pc:       556
+exitting mem stage at pc:       556
+
+Cycle         59 ----------------------------------------------------
+IF is happening PC       540
+decoding is starting at pc:       552
+memory responds with insturction at pc:       552
+decode is happening pc:       552
+execute epochs match at decode pc:       552
+
+Cycle         60 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       544
+writeback is exiting
+IF is happening PC       544
+decoding is starting at pc:       540
+memory responds with insturction at pc:       540
+decode is happening pc:       540
+execute epochs match at decode pc:       540
+execute stage is firing at pc:       548
+execute epochs match at pc:       548
+instruction is a jump and not poisoned at pc:       548
+instruction is not poisoned at pc:       548
+register fetch at pc:       540
+execute epochs match at pc:       540
+instruction is not poisoned. pc is:       540
+instruction is not stalled at pc:       540
+entering mem at pc:       548
+instruction is fine at pc:       548
+exitting mem stage at pc:       548
+
+Cycle         61 ----------------------------------------------------
+IF is happening PC       532
+decoding is starting at pc:       544
+memory responds with insturction at pc:       544
+decode is happening pc:       544
+execute epochs match at decode pc:       544
+
+Cycle         62 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       536
+writeback is exiting
+IF is happening PC       536
+decoding is starting at pc:       532
+memory responds with insturction at pc:       532
+decode is happening pc:       532
+execute epochs match at decode pc:       532
+execute stage is firing at pc:       540
+execute epochs match at pc:       540
+instruction is a jump and not poisoned at pc:       540
+instruction is not poisoned at pc:       540
+register fetch at pc:       532
+execute epochs match at pc:       532
+instruction is not poisoned. pc is:       532
+instruction is not stalled at pc:       532
+entering mem at pc:       540
+instruction is fine at pc:       540
+exitting mem stage at pc:       540
+
+Cycle         63 ----------------------------------------------------
+IF is happening PC       524
+decoding is starting at pc:       536
+memory responds with insturction at pc:       536
+decode is happening pc:       536
+execute epochs match at decode pc:       536
+
+Cycle         64 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       528
+writeback is exiting
+IF is happening PC       528
+decoding is starting at pc:       524
+memory responds with insturction at pc:       524
+decode is happening pc:       524
+execute epochs match at decode pc:       524
+execute stage is firing at pc:       532
+execute epochs match at pc:       532
+instruction is a jump and not poisoned at pc:       532
+instruction is not poisoned at pc:       532
+register fetch at pc:       524
+execute epochs match at pc:       524
+instruction is not poisoned. pc is:       524
+instruction is not stalled at pc:       524
+entering mem at pc:       532
+instruction is fine at pc:       532
+exitting mem stage at pc:       532
+
+Cycle         65 ----------------------------------------------------
+IF is happening PC       772
+decoding is starting at pc:       528
+memory responds with insturction at pc:       528
+decode is happening pc:       528
+execute epochs match at decode pc:       528
+
+Cycle         66 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       776
+writeback is exiting
+IF is happening PC       776
+decoding is starting at pc:       772
+memory responds with insturction at pc:       772
+decode is happening pc:       772
+execute epochs match at decode pc:       772
+decoded instruction is type branch, pc:       772
+bht prediction differs from predPc at pc:       772
+execute stage is firing at pc:       524
+execute epochs match at pc:       524
+instruction is a jump and not poisoned at pc:       524
+instruction is not poisoned at pc:       524
+register fetch at pc:       772
+execute epochs match at pc:       772
+instruction is not poisoned. pc is:       772
+instruction is not stalled at pc:       772
+entering mem at pc:       524
+instruction is fine at pc:       524
+exitting mem stage at pc:       524
+
+Cycle         67 ----------------------------------------------------
+IF is happening PC       792
+decoding is starting at pc:       776
+memory responds with insturction at pc:       776
+decode is happening pc:       776
+execute epochs match at decode pc:       776
+
+Cycle         68 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       796
+writeback is exiting
+IF is happening PC       796
+decoding is starting at pc:       792
+memory responds with insturction at pc:       792
+decode is happening pc:       792
+execute epochs match at decode pc:       792
+execute stage is firing at pc:       772
+execute epochs match at pc:       772
+instruction is not poisoned and a branch at pc:       772
+instruction is not poisoned at pc:       772
+register fetch at pc:       792
+execute epochs match at pc:       792
+instruction is not poisoned. pc is:       792
+instruction is not stalled at pc:       792
+entering mem at pc:       772
+instruction is fine at pc:       772
+exitting mem stage at pc:       772
+
+Cycle         69 ----------------------------------------------------
+IF is happening PC       800
+decoding is starting at pc:       796
+memory responds with insturction at pc:       796
+decode is happening pc:       796
+execute epochs match at decode pc:       796
+register fetch at pc:       796
+execute epochs match at pc:       796
+instruction is not poisoned. pc is:       796
+instruction is not stalled at pc:       796
+
+Cycle         70 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       800
+writeback is exiting
+IF is happening PC       800
+decoding is starting at pc:       800
+memory responds with insturction at pc:       800
+decode is happening pc:       800
+execute epochs match at decode pc:       800
+execute stage is firing at pc:       792
+execute epochs match at pc:       792
+instruction is not poisoned at pc:       792
+entering mem at pc:       792
+instruction is fine at pc:       792
+exitting mem stage at pc:       792
+
+Cycle         71 ----------------------------------------------------
+IF is happening PC       804
+decoding is starting at pc:       800
+memory responds with insturction at pc:       800
+decode is happening pc:       800
+execute epochs match at decode pc:       800
+execute stage is firing at pc:       796
+execute epochs match at pc:       796
+instruction is a jump and not poisoned at pc:       796
+instruction is not poisoned at pc:       796
+register fetch at pc:       800
+execute epochs match at pc:       800
+instruction is not poisoned. pc is:       800
+instruction is not stalled at pc:       800
+entering mem at pc:       796
+instruction is fine at pc:       796
+exitting mem stage at pc:       796
+
+Cycle         72 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       808
+above instruction has a valid desitation
+writeback is exiting
+IF is happening PC       808
+decoding is starting at pc:       804
+memory responds with insturction at pc:       804
+decode is happening pc:       804
+execute epochs match at decode pc:       804
+register fetch at pc:       804
+execute epochs match at pc:       804
+instruction is not poisoned. pc is:       804
+instruction is not stalled at pc:       804
+
+Cycle         73 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       812
+writeback is exiting
+IF is happening PC       812
+decoding is starting at pc:       808
+memory responds with insturction at pc:       808
+decode is happening pc:       808
+execute epochs match at decode pc:       808
+execute stage is firing at pc:       800
+execute epochs match at pc:       800
+instruction is not poisoned at pc:       800
+register fetch at pc:       808
+execute epochs match at pc:       808
+instruction is not poisoned. pc is:       808
+stalled at pc:       808
+entering mem at pc:       800
+instruction is fine at pc:       800
+exitting mem stage at pc:       800
+
+Cycle         74 ----------------------------------------------------
+IF is happening PC       816
+decoding is starting at pc:       812
+memory responds with insturction at pc:       812
+decode is happening pc:       812
+execute epochs match at decode pc:       812
+execute stage is firing at pc:       804
+execute epochs match at pc:       804
+instruction is not poisoned at pc:       804
+register fetch at pc:       808
+execute epochs match at pc:       808
+instruction is not poisoned. pc is:       808
+stalled at pc:       808
+entering mem at pc:       804
+instruction is fine at pc:       804
+exitting mem stage at pc:       804
+
+Cycle         75 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       820
+above instruction has a valid desitation
+writeback is exiting
+IF is happening PC       820
+register fetch at pc:       808
+execute epochs match at pc:       808
+instruction is not poisoned. pc is:       808
+instruction is not stalled at pc:       808
+
+Cycle         76 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       824
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       812
+execute epochs match at pc:       812
+instruction is not poisoned. pc is:       812
+stalled at pc:       812
+
+Cycle         77 ----------------------------------------------------
+decoding is starting at pc:       816
+memory responds with insturction at pc:       816
+decode is happening pc:       816
+execute epochs match at decode pc:       816
+execute stage is firing at pc:       808
+execute epochs match at pc:       808
+instruction is not poisoned at pc:       808
+register fetch at pc:       812
+execute epochs match at pc:       812
+instruction is not poisoned. pc is:       812
+stalled at pc:       812
+entering mem at pc:       808
+instruction is fine at pc:       808
+exitting mem stage at pc:       808
+
+Cycle         78 ----------------------------------------------------
+IF is happening PC       824
+register fetch at pc:       812
+execute epochs match at pc:       812
+instruction is not poisoned. pc is:       812
+stalled at pc:       812
+
+Cycle         79 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       828
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       812
+execute epochs match at pc:       812
+instruction is not poisoned. pc is:       812
+instruction is not stalled at pc:       812
+
+Cycle         80 ----------------------------------------------------
+register fetch at pc:       816
+execute epochs match at pc:       816
+instruction is not poisoned. pc is:       816
+instruction is not stalled at pc:       816
+
+Cycle         81 ----------------------------------------------------
+decoding is starting at pc:       820
+memory responds with insturction at pc:       820
+decode is happening pc:       820
+execute epochs match at decode pc:       820
+execute stage is firing at pc:       812
+execute epochs match at pc:       812
+instruction is not poisoned at pc:       812
+register fetch at pc:       820
+execute epochs match at pc:       820
+instruction is not poisoned. pc is:       820
+stalled at pc:       820
+entering mem at pc:       812
+instruction is fine at pc:       812
+exitting mem stage at pc:       812
+
+Cycle         82 ----------------------------------------------------
+IF is happening PC       828
+decoding is starting at pc:       824
+memory responds with insturction at pc:       824
+decode is happening pc:       824
+execute epochs match at decode pc:       824
+execute stage is firing at pc:       816
+execute epochs match at pc:       816
+instruction is not poisoned at pc:       816
+register fetch at pc:       820
+execute epochs match at pc:       820
+instruction is not poisoned. pc is:       820
+stalled at pc:       820
+entering mem at pc:       816
+instruction is fine at pc:       816
+exitting mem stage at pc:       816
+
+Cycle         83 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       832
+above instruction has a valid desitation
+writeback is exiting
+IF is happening PC       832
+register fetch at pc:       820
+execute epochs match at pc:       820
+instruction is not poisoned. pc is:       820
+stalled at pc:       820
+
+Cycle         84 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       836
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       820
+execute epochs match at pc:       820
+instruction is not poisoned. pc is:       820
+instruction is not stalled at pc:       820
+
+Cycle         85 ----------------------------------------------------
+register fetch at pc:       824
+execute epochs match at pc:       824
+instruction is not poisoned. pc is:       824
+stalled at pc:       824
+
+Cycle         86 ----------------------------------------------------
+decoding is starting at pc:       828
+memory responds with insturction at pc:       828
+decode is happening pc:       828
+execute epochs match at decode pc:       828
+execute stage is firing at pc:       820
+execute epochs match at pc:       820
+instruction is not poisoned at pc:       820
+register fetch at pc:       824
+execute epochs match at pc:       824
+instruction is not poisoned. pc is:       824
+stalled at pc:       824
+entering mem at pc:       820
+instruction is fine at pc:       820
+exitting mem stage at pc:       820
+
+Cycle         87 ----------------------------------------------------
+IF is happening PC       836
+register fetch at pc:       824
+execute epochs match at pc:       824
+instruction is not poisoned. pc is:       824
+stalled at pc:       824
+
+Cycle         88 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       840
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       824
+execute epochs match at pc:       824
+instruction is not poisoned. pc is:       824
+instruction is not stalled at pc:       824
+
+Cycle         89 ----------------------------------------------------
+register fetch at pc:       828
+execute epochs match at pc:       828
+instruction is not poisoned. pc is:       828
+instruction is not stalled at pc:       828
+
+Cycle         90 ----------------------------------------------------
+decoding is starting at pc:       832
+memory responds with insturction at pc:       832
+decode is happening pc:       832
+execute epochs match at decode pc:       832
+execute stage is firing at pc:       824
+execute epochs match at pc:       824
+instruction is not poisoned at pc:       824
+register fetch at pc:       832
+execute epochs match at pc:       832
+instruction is not poisoned. pc is:       832
+instruction is not stalled at pc:       832
+entering mem at pc:       824
+instruction is fine at pc:       824
+exitting mem stage at pc:       824
+
+Cycle         91 ----------------------------------------------------
+IF is happening PC       840
+decoding is starting at pc:       836
+memory responds with insturction at pc:       836
+decode is happening pc:       836
+execute epochs match at decode pc:       836
+execute stage is firing at pc:       828
+execute epochs match at pc:       828
+instruction is not poisoned at pc:       828
+register fetch at pc:       836
+execute epochs match at pc:       836
+instruction is not poisoned. pc is:       836
+stalled at pc:       836
+entering mem at pc:       828
+instruction is fine at pc:       828
+exitting mem stage at pc:       828
+
+Cycle         92 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       844
+writeback is exiting
+IF is happening PC       844
+decoding is starting at pc:       840
+memory responds with insturction at pc:       840
+decode is happening pc:       840
+execute epochs match at decode pc:       840
+execute stage is firing at pc:       832
+execute epochs match at pc:       832
+instruction is not poisoned at pc:       832
+register fetch at pc:       836
+execute epochs match at pc:       836
+instruction is not poisoned. pc is:       836
+stalled at pc:       836
+entering mem at pc:       832
+instruction is fine at pc:       832
+exitting mem stage at pc:       832
+
+Cycle         93 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       848
+above instruction has a valid desitation
+writeback is exiting
+IF is happening PC       848
+register fetch at pc:       836
+execute epochs match at pc:       836
+instruction is not poisoned. pc is:       836
+stalled at pc:       836
+
+Cycle         94 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       852
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       836
+execute epochs match at pc:       836
+instruction is not poisoned. pc is:       836
+instruction is not stalled at pc:       836
+
+Cycle         95 ----------------------------------------------------
+register fetch at pc:       840
+execute epochs match at pc:       840
+instruction is not poisoned. pc is:       840
+stalled at pc:       840
+
+Cycle         96 ----------------------------------------------------
+decoding is starting at pc:       844
+memory responds with insturction at pc:       844
+decode is happening pc:       844
+execute epochs match at decode pc:       844
+execute stage is firing at pc:       836
+execute epochs match at pc:       836
+instruction is not poisoned at pc:       836
+register fetch at pc:       840
+execute epochs match at pc:       840
+instruction is not poisoned. pc is:       840
+stalled at pc:       840
+entering mem at pc:       836
+instruction is fine at pc:       836
+exitting mem stage at pc:       836
+
+Cycle         97 ----------------------------------------------------
+IF is happening PC       852
+register fetch at pc:       840
+execute epochs match at pc:       840
+instruction is not poisoned. pc is:       840
+stalled at pc:       840
+
+Cycle         98 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       856
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       840
+execute epochs match at pc:       840
+instruction is not poisoned. pc is:       840
+instruction is not stalled at pc:       840
+
+Cycle         99 ----------------------------------------------------
+register fetch at pc:       844
+execute epochs match at pc:       844
+instruction is not poisoned. pc is:       844
+instruction is not stalled at pc:       844
+
+Cycle        100 ----------------------------------------------------
+decoding is starting at pc:       848
+memory responds with insturction at pc:       848
+decode is happening pc:       848
+execute epochs match at decode pc:       848
+execute stage is firing at pc:       840
+execute epochs match at pc:       840
+instruction is not poisoned at pc:       840
+register fetch at pc:       848
+execute epochs match at pc:       848
+instruction is not poisoned. pc is:       848
+stalled at pc:       848
+entering mem at pc:       840
+instruction is fine at pc:       840
+exitting mem stage at pc:       840
+
+Cycle        101 ----------------------------------------------------
+IF is happening PC       856
+decoding is starting at pc:       852
+memory responds with insturction at pc:       852
+decode is happening pc:       852
+execute epochs match at decode pc:       852
+execute stage is firing at pc:       844
+execute epochs match at pc:       844
+instruction is not poisoned at pc:       844
+register fetch at pc:       848
+execute epochs match at pc:       848
+instruction is not poisoned. pc is:       848
+stalled at pc:       848
+entering mem at pc:       844
+instruction is fine at pc:       844
+exitting mem stage at pc:       844
+
+Cycle        102 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       860
+writeback is exiting
+IF is happening PC       860
+register fetch at pc:       848
+execute epochs match at pc:       848
+instruction is not poisoned. pc is:       848
+stalled at pc:       848
+
+Cycle        103 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       864
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       848
+execute epochs match at pc:       848
+instruction is not poisoned. pc is:       848
+instruction is not stalled at pc:       848
+
+Cycle        104 ----------------------------------------------------
+register fetch at pc:       852
+execute epochs match at pc:       852
+instruction is not poisoned. pc is:       852
+stalled at pc:       852
+
+Cycle        105 ----------------------------------------------------
+decoding is starting at pc:       856
+memory responds with insturction at pc:       856
+decode is happening pc:       856
+execute epochs match at decode pc:       856
+execute stage is firing at pc:       848
+execute epochs match at pc:       848
+instruction is not poisoned at pc:       848
+register fetch at pc:       852
+execute epochs match at pc:       852
+instruction is not poisoned. pc is:       852
+stalled at pc:       852
+entering mem at pc:       848
+instruction is fine at pc:       848
+exitting mem stage at pc:       848
+
+Cycle        106 ----------------------------------------------------
+IF is happening PC       864
+register fetch at pc:       852
+execute epochs match at pc:       852
+instruction is not poisoned. pc is:       852
+stalled at pc:       852
+
+Cycle        107 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       868
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       852
+execute epochs match at pc:       852
+instruction is not poisoned. pc is:       852
+instruction is not stalled at pc:       852
+
+Cycle        108 ----------------------------------------------------
+register fetch at pc:       856
+execute epochs match at pc:       856
+instruction is not poisoned. pc is:       856
+instruction is not stalled at pc:       856
+
+Cycle        109 ----------------------------------------------------
+decoding is starting at pc:       860
+memory responds with insturction at pc:       860
+decode is happening pc:       860
+execute epochs match at decode pc:       860
+execute stage is firing at pc:       852
+execute epochs match at pc:       852
+instruction is not poisoned at pc:       852
+register fetch at pc:       860
+execute epochs match at pc:       860
+instruction is not poisoned. pc is:       860
+stalled at pc:       860
+entering mem at pc:       852
+instruction is fine at pc:       852
+exitting mem stage at pc:       852
+
+Cycle        110 ----------------------------------------------------
+IF is happening PC       868
+decoding is starting at pc:       864
+memory responds with insturction at pc:       864
+decode is happening pc:       864
+execute epochs match at decode pc:       864
+execute stage is firing at pc:       856
+execute epochs match at pc:       856
+instruction is not poisoned at pc:       856
+register fetch at pc:       860
+execute epochs match at pc:       860
+instruction is not poisoned. pc is:       860
+stalled at pc:       860
+entering mem at pc:       856
+instruction is fine at pc:       856
+exitting mem stage at pc:       856
+
+Cycle        111 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       872
+writeback is exiting
+IF is happening PC       872
+register fetch at pc:       860
+execute epochs match at pc:       860
+instruction is not poisoned. pc is:       860
+stalled at pc:       860
+
+Cycle        112 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       876
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       860
+execute epochs match at pc:       860
+instruction is not poisoned. pc is:       860
+instruction is not stalled at pc:       860
+
+Cycle        113 ----------------------------------------------------
+register fetch at pc:       864
+execute epochs match at pc:       864
+instruction is not poisoned. pc is:       864
+instruction is not stalled at pc:       864
+
+Cycle        114 ----------------------------------------------------
+decoding is starting at pc:       868
+memory responds with insturction at pc:       868
+decode is happening pc:       868
+execute epochs match at decode pc:       868
+execute stage is firing at pc:       860
+execute epochs match at pc:       860
+instruction is not poisoned at pc:       860
+register fetch at pc:       868
+execute epochs match at pc:       868
+instruction is not poisoned. pc is:       868
+stalled at pc:       868
+entering mem at pc:       860
+instruction is fine at pc:       860
+exitting mem stage at pc:       860
+
+Cycle        115 ----------------------------------------------------
+IF is happening PC       876
+decoding is starting at pc:       872
+memory responds with insturction at pc:       872
+decode is happening pc:       872
+execute epochs match at decode pc:       872
+execute stage is firing at pc:       864
+execute epochs match at pc:       864
+instruction is not poisoned at pc:       864
+register fetch at pc:       868
+execute epochs match at pc:       868
+instruction is not poisoned. pc is:       868
+stalled at pc:       868
+entering mem at pc:       864
+instruction is fine at pc:       864
+exitting mem stage at pc:       864
+
+Cycle        116 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       880
+above instruction has a valid desitation
+writeback is exiting
+IF is happening PC       880
+register fetch at pc:       868
+execute epochs match at pc:       868
+instruction is not poisoned. pc is:       868
+stalled at pc:       868
+
+Cycle        117 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       884
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       868
+execute epochs match at pc:       868
+instruction is not poisoned. pc is:       868
+instruction is not stalled at pc:       868
+
+Cycle        118 ----------------------------------------------------
+register fetch at pc:       872
+execute epochs match at pc:       872
+instruction is not poisoned. pc is:       872
+stalled at pc:       872
+
+Cycle        119 ----------------------------------------------------
+decoding is starting at pc:       876
+memory responds with insturction at pc:       876
+decode is happening pc:       876
+execute epochs match at decode pc:       876
+execute stage is firing at pc:       868
+execute epochs match at pc:       868
+instruction is not poisoned at pc:       868
+register fetch at pc:       872
+execute epochs match at pc:       872
+instruction is not poisoned. pc is:       872
+stalled at pc:       872
+entering mem at pc:       868
+instruction is fine at pc:       868
+exitting mem stage at pc:       868
+
+Cycle        120 ----------------------------------------------------
+IF is happening PC       884
+register fetch at pc:       872
+execute epochs match at pc:       872
+instruction is not poisoned. pc is:       872
+stalled at pc:       872
+
+Cycle        121 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       888
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       872
+execute epochs match at pc:       872
+instruction is not poisoned. pc is:       872
+instruction is not stalled at pc:       872
+
+Cycle        122 ----------------------------------------------------
+register fetch at pc:       876
+execute epochs match at pc:       876
+instruction is not poisoned. pc is:       876
+instruction is not stalled at pc:       876
+
+Cycle        123 ----------------------------------------------------
+decoding is starting at pc:       880
+memory responds with insturction at pc:       880
+decode is happening pc:       880
+execute epochs match at decode pc:       880
+execute stage is firing at pc:       872
+execute epochs match at pc:       872
+instruction is not poisoned at pc:       872
+register fetch at pc:       880
+execute epochs match at pc:       880
+instruction is not poisoned. pc is:       880
+instruction is not stalled at pc:       880
+entering mem at pc:       872
+instruction is fine at pc:       872
+exitting mem stage at pc:       872
+
+Cycle        124 ----------------------------------------------------
+IF is happening PC       888
+decoding is starting at pc:       884
+memory responds with insturction at pc:       884
+decode is happening pc:       884
+execute epochs match at decode pc:       884
+execute stage is firing at pc:       876
+execute epochs match at pc:       876
+instruction is not poisoned at pc:       876
+register fetch at pc:       884
+execute epochs match at pc:       884
+instruction is not poisoned. pc is:       884
+stalled at pc:       884
+entering mem at pc:       876
+instruction is fine at pc:       876
+exitting mem stage at pc:       876
+
+Cycle        125 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       892
+writeback is exiting
+IF is happening PC       892
+decoding is starting at pc:       888
+memory responds with insturction at pc:       888
+decode is happening pc:       888
+execute epochs match at decode pc:       888
+execute stage is firing at pc:       880
+execute epochs match at pc:       880
+instruction is not poisoned at pc:       880
+register fetch at pc:       884
+execute epochs match at pc:       884
+instruction is not poisoned. pc is:       884
+stalled at pc:       884
+entering mem at pc:       880
+instruction is fine at pc:       880
+exitting mem stage at pc:       880
+
+Cycle        126 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       896
+above instruction has a valid desitation
+writeback is exiting
+IF is happening PC       896
+register fetch at pc:       884
+execute epochs match at pc:       884
+instruction is not poisoned. pc is:       884
+stalled at pc:       884
+
+Cycle        127 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       900
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       884
+execute epochs match at pc:       884
+instruction is not poisoned. pc is:       884
+instruction is not stalled at pc:       884
+
+Cycle        128 ----------------------------------------------------
+register fetch at pc:       888
+execute epochs match at pc:       888
+instruction is not poisoned. pc is:       888
+stalled at pc:       888
+
+Cycle        129 ----------------------------------------------------
+decoding is starting at pc:       892
+memory responds with insturction at pc:       892
+decode is happening pc:       892
+execute epochs match at decode pc:       892
+execute stage is firing at pc:       884
+execute epochs match at pc:       884
+instruction is not poisoned at pc:       884
+register fetch at pc:       888
+execute epochs match at pc:       888
+instruction is not poisoned. pc is:       888
+stalled at pc:       888
+entering mem at pc:       884
+instruction is fine at pc:       884
+exitting mem stage at pc:       884
+
+Cycle        130 ----------------------------------------------------
+IF is happening PC       900
+register fetch at pc:       888
+execute epochs match at pc:       888
+instruction is not poisoned. pc is:       888
+stalled at pc:       888
+
+Cycle        131 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       904
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       888
+execute epochs match at pc:       888
+instruction is not poisoned. pc is:       888
+instruction is not stalled at pc:       888
+
+Cycle        132 ----------------------------------------------------
+register fetch at pc:       892
+execute epochs match at pc:       892
+instruction is not poisoned. pc is:       892
+instruction is not stalled at pc:       892
+
+Cycle        133 ----------------------------------------------------
+decoding is starting at pc:       896
+memory responds with insturction at pc:       896
+decode is happening pc:       896
+execute epochs match at decode pc:       896
+execute stage is firing at pc:       888
+execute epochs match at pc:       888
+instruction is not poisoned at pc:       888
+register fetch at pc:       896
+execute epochs match at pc:       896
+instruction is not poisoned. pc is:       896
+stalled at pc:       896
+entering mem at pc:       888
+instruction is fine at pc:       888
+exitting mem stage at pc:       888
+
+Cycle        134 ----------------------------------------------------
+IF is happening PC       904
+decoding is starting at pc:       900
+memory responds with insturction at pc:       900
+decode is happening pc:       900
+execute epochs match at decode pc:       900
+execute stage is firing at pc:       892
+execute epochs match at pc:       892
+instruction is not poisoned at pc:       892
+register fetch at pc:       896
+execute epochs match at pc:       896
+instruction is not poisoned. pc is:       896
+stalled at pc:       896
+entering mem at pc:       892
+instruction is fine at pc:       892
+exitting mem stage at pc:       892
+
+Cycle        135 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       908
+writeback is exiting
+IF is happening PC       908
+register fetch at pc:       896
+execute epochs match at pc:       896
+instruction is not poisoned. pc is:       896
+stalled at pc:       896
+
+Cycle        136 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       912
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       896
+execute epochs match at pc:       896
+instruction is not poisoned. pc is:       896
+instruction is not stalled at pc:       896
+
+Cycle        137 ----------------------------------------------------
+register fetch at pc:       900
+execute epochs match at pc:       900
+instruction is not poisoned. pc is:       900
+stalled at pc:       900
+
+Cycle        138 ----------------------------------------------------
+decoding is starting at pc:       904
+memory responds with insturction at pc:       904
+decode is happening pc:       904
+execute epochs match at decode pc:       904
+execute stage is firing at pc:       896
+execute epochs match at pc:       896
+instruction is not poisoned at pc:       896
+register fetch at pc:       900
+execute epochs match at pc:       900
+instruction is not poisoned. pc is:       900
+stalled at pc:       900
+entering mem at pc:       896
+instruction is fine at pc:       896
+exitting mem stage at pc:       896
+
+Cycle        139 ----------------------------------------------------
+IF is happening PC       912
+register fetch at pc:       900
+execute epochs match at pc:       900
+instruction is not poisoned. pc is:       900
+stalled at pc:       900
+
+Cycle        140 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       916
+above instruction has a valid desitation
+writeback is exiting
+register fetch at pc:       900
+execute epochs match at pc:       900
+instruction is not poisoned. pc is:       900
+instruction is not stalled at pc:       900
+
+Cycle        141 ----------------------------------------------------
+register fetch at pc:       904
+execute epochs match at pc:       904
+instruction is not poisoned. pc is:       904
+instruction is not stalled at pc:       904
+
+Cycle        142 ----------------------------------------------------
+decoding is starting at pc:       908
+memory responds with insturction at pc:       908
+decode is happening pc:       908
+execute epochs match at decode pc:       908
+execute stage is firing at pc:       900
+execute epochs match at pc:       900
+instruction is not poisoned at pc:       900
+register fetch at pc:       908
+execute epochs match at pc:       908
+instruction is not poisoned. pc is:       908
+instruction is not stalled at pc:       908
+entering mem at pc:       900
+instruction is fine at pc:       900
+exitting mem stage at pc:       900
+
+Cycle        143 ----------------------------------------------------
+IF is happening PC       908
+decoding is starting at pc:       912
+memory responds with insturction at pc:       912
+decode is happening pc:       912
+execute epochs match at decode pc:       912
+execute stage is firing at pc:       904
+execute epochs match at pc:       904
+instruction is not poisoned at pc:       904
+entering mem at pc:       904
+instruction is fine at pc:       904
+exitting mem stage at pc:       904
+
+Cycle        144 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       912
+writeback is exiting
+IF is happening PC       912
+decoding is starting at pc:       908
+memory responds with insturction at pc:       908
+decode is happening pc:       908
+execute epochs match at decode pc:       908
+execute stage is firing at pc:       908
+execute epochs match at pc:       908
+instruction is a jump and not poisoned at pc:       908
+instruction is not poisoned at pc:       908
+register fetch at pc:       908
+execute epochs match at pc:       908
+instruction is not poisoned. pc is:       908
+instruction is not stalled at pc:       908
+entering mem at pc:       908
+instruction is fine at pc:       908
+exitting mem stage at pc:       908
+
+Cycle        145 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       908
+writeback is exiting
+IF is happening PC       908
+decoding is starting at pc:       912
+memory responds with insturction at pc:       912
+decode is happening pc:       912
+execute epochs match at decode pc:       912
+
+Cycle        146 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       912
+writeback is exiting
+IF is happening PC       912
+decoding is starting at pc:       908
+memory responds with insturction at pc:       908
+decode is happening pc:       908
+execute epochs match at decode pc:       908
+execute stage is firing at pc:       908
+execute epochs match at pc:       908
+instruction is a jump and not poisoned at pc:       908
+instruction is not poisoned at pc:       908
+register fetch at pc:       908
+execute epochs match at pc:       908
+instruction is not poisoned. pc is:       908
+instruction is not stalled at pc:       908
+entering mem at pc:       908
+instruction is fine at pc:       908
+exitting mem stage at pc:       908
+
+Cycle        147 ----------------------------------------------------
+IF is happening PC       908
+decoding is starting at pc:       912
+memory responds with insturction at pc:       912
+decode is happening pc:       912
+execute epochs match at decode pc:       912
+
+Cycle        148 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       912
+writeback is exiting
+IF is happening PC       912
+decoding is starting at pc:       908
+memory responds with insturction at pc:       908
+decode is happening pc:       908
+execute epochs match at decode pc:       908
+execute stage is firing at pc:       908
+execute epochs match at pc:       908
+instruction is a jump and not poisoned at pc:       908
+instruction is not poisoned at pc:       908
+register fetch at pc:       908
+execute epochs match at pc:       908
+instruction is not poisoned. pc is:       908
+instruction is not stalled at pc:       908
+entering mem at pc:       908
+instruction is fine at pc:       908
+exitting mem stage at pc:       908
+
+Cycle        149 ----------------------------------------------------
+IF is happening PC       908
+decoding is starting at pc:       912
+memory responds with insturction at pc:       912
+decode is happening pc:       912
+execute epochs match at decode pc:       912
+
+Cycle        150 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       912
+writeback is exiting
+IF is happening PC       912
+decoding is starting at pc:       908
+memory responds with insturction at pc:       908
+decode is happening pc:       908
+execute epochs match at decode pc:       908
+execute stage is firing at pc:       908
+execute epochs match at pc:       908
+instruction is a jump and not poisoned at pc:       908
+instruction is not poisoned at pc:       908
+register fetch at pc:       908
+execute epochs match at pc:       908
+instruction is not poisoned. pc is:       908
+instruction is not stalled at pc:       908
+entering mem at pc:       908
+instruction is fine at pc:       908
+exitting mem stage at pc:       908
+
+Cycle        151 ----------------------------------------------------
+IF is happening PC       908
+decoding is starting at pc:       912
+memory responds with insturction at pc:       912
+decode is happening pc:       912
+execute epochs match at decode pc:       912
+
+Cycle        152 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       912
+writeback is exiting
+IF is happening PC       912
+decoding is starting at pc:       908
+memory responds with insturction at pc:       908
+decode is happening pc:       908
+execute epochs match at decode pc:       908
+execute stage is firing at pc:       908
+execute epochs match at pc:       908
+instruction is a jump and not poisoned at pc:       908
+instruction is not poisoned at pc:       908
+register fetch at pc:       908
+execute epochs match at pc:       908
+instruction is not poisoned. pc is:       908
+instruction is not stalled at pc:       908
+entering mem at pc:       908
+instruction is fine at pc:       908
+exitting mem stage at pc:       908
+
+Cycle        153 ----------------------------------------------------
+IF is happening PC       908
+decoding is starting at pc:       912
+memory responds with insturction at pc:       912
+decode is happening pc:       912
+execute epochs match at decode pc:       912
+
+Cycle        154 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       912
+writeback is exiting
+IF is happening PC       912
+decoding is starting at pc:       908
+memory responds with insturction at pc:       908
+decode is happening pc:       908
+execute epochs match at decode pc:       908
+execute stage is firing at pc:       908
+execute epochs match at pc:       908
+instruction is a jump and not poisoned at pc:       908
+instruction is not poisoned at pc:       908
+register fetch at pc:       908
+execute epochs match at pc:       908
+instruction is not poisoned. pc is:       908
+instruction is not stalled at pc:       908
+entering mem at pc:       908
+instruction is fine at pc:       908
+exitting mem stage at pc:       908
+
+Cycle        155 ----------------------------------------------------
+IF is happening PC       908
+decoding is starting at pc:       912
+memory responds with insturction at pc:       912
+decode is happening pc:       912
+execute epochs match at decode pc:       912
+
+Cycle        156 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       912
+writeback is exiting
+IF is happening PC       912
+decoding is starting at pc:       908
+memory responds with insturction at pc:       908
+decode is happening pc:       908
+execute epochs match at decode pc:       908
+execute stage is firing at pc:       908
+execute epochs match at pc:       908
+instruction is a jump and not poisoned at pc:       908
+instruction is not poisoned at pc:       908
+register fetch at pc:       908
+execute epochs match at pc:       908
+instruction is not poisoned. pc is:       908
+instruction is not stalled at pc:       908
+entering mem at pc:       908
+instruction is fine at pc:       908
+exitting mem stage at pc:       908
+
+Cycle        157 ----------------------------------------------------
+IF is happening PC       908
+decoding is starting at pc:       912
+memory responds with insturction at pc:       912
+decode is happening pc:       912
+execute epochs match at decode pc:       912
+
+Cycle        158 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       912
+writeback is exiting
+IF is happening PC       912
+decoding is starting at pc:       908
+memory responds with insturction at pc:       908
+decode is happening pc:       908
+execute epochs match at decode pc:       908
+execute stage is firing at pc:       908
+execute epochs match at pc:       908
+instruction is a jump and not poisoned at pc:       908
+instruction is not poisoned at pc:       908
+register fetch at pc:       908
+execute epochs match at pc:       908
+instruction is not poisoned. pc is:       908
+instruction is not stalled at pc:       908
+entering mem at pc:       908
+instruction is fine at pc:       908
+exitting mem stage at pc:       908
+
+Cycle        159 ----------------------------------------------------
+IF is happening PC       908
+decoding is starting at pc:       912
+memory responds with insturction at pc:       912
+decode is happening pc:       912
+execute epochs match at decode pc:       912
+
+Cycle        160 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       912
+writeback is exiting
+IF is happening PC       912
+decoding is starting at pc:       908
+memory responds with insturction at pc:       908
+decode is happening pc:       908
+execute epochs match at decode pc:       908
+execute stage is firing at pc:       908
+execute epochs match at pc:       908
+instruction is a jump and not poisoned at pc:       908
+instruction is not poisoned at pc:       908
+register fetch at pc:       908
+execute epochs match at pc:       908
+instruction is not poisoned. pc is:       908
+instruction is not stalled at pc:       908
+entering mem at pc:       908
+instruction is fine at pc:       908
+exitting mem stage at pc:       908
+
+Cycle        161 ----------------------------------------------------
+IF is happening PC       908
+decoding is starting at pc:       912
+memory responds with insturction at pc:       912
+decode is happening pc:       912
+execute epochs match at decode pc:       912
+
+Cycle        162 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       912
+writeback is exiting
+IF is happening PC       912
+decoding is starting at pc:       908
+memory responds with insturction at pc:       908
+decode is happening pc:       908
+execute epochs match at decode pc:       908
+execute stage is firing at pc:       908
+execute epochs match at pc:       908
+instruction is a jump and not poisoned at pc:       908
+instruction is not poisoned at pc:       908
+register fetch at pc:       908
+execute epochs match at pc:       908
+instruction is not poisoned. pc is:       908
+instruction is not stalled at pc:       908
+entering mem at pc:       908
+instruction is fine at pc:       908
+exitting mem stage at pc:       908
+
+Cycle        163 ----------------------------------------------------
+IF is happening PC       908
+decoding is starting at pc:       912
+memory responds with insturction at pc:       912
+decode is happening pc:       912
+execute epochs match at decode pc:       912
+
+Cycle        164 ----------------------------------------------------
+entering writeback
+write back stage and not poison at pc       912
+writeback is exiting
+IF is happening PC       912
+decoding is starting at pc:       908
+memory responds with insturction at pc:       908
+decode is happening pc:       908
+execute epochs match at decode pc:       908
+execute stage is firing at pc:       908
+execute epochs match at pc:       908
+instruction is a jump and not poisoned at pc:       908
+instruction is not poisoned at pc:       908
+register fetch at pc:       908
+execute epochs match at pc:       908
+instruction is not poisoned. pc is:       908
+instruction is not stalled at pc:       908
+entering mem at pc:       908
+instruction is fine at pc:       908
+exitting mem stage at pc:       908
+
+Cycle        165 ----------------------------------------------------
+IF is happening PC       908
+decoding is starting at pc:       912
+memory responds with insturction at pc:       912
+decode is happening pc:       912
+execute epochs match at decode pc:       912
+simulator calling $finish

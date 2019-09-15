@@ -1,0 +1,72 @@
+1) The error says executing unsupported instruction at pc 4000. This happens when a load or store is executed the address calculated is a memory address and thus when it tries to execute the instruction at PC it gets an unsupported instruction error. The pc+4 and BTB create separate data structures that don't conflict with the addr field of ExecInst and thus don't have this issue, so to fix it you would need a condition that creates a different data structure with PC so that when loads and stores are executed one structure is used while when other instructions are executed the other data structure is used.
+
+2) None of the rules attempt to double write or require the same exact value at the same time (due to the use of EHRs) also the log file can show which stages are firing at the same time via display statements.
+
+3) It takes 4 cycles to correct a misprediction
+
+4) There is a three cycle stall if an instruction needs information from the insturction right before it
+
+5) median: .4538
+multiply: .6124
+qsort: .32036
+vvadd: .6650
+towers: .73692
+
+6)
+
+-decode should read the BHT to check if the predPC is correct when there is a Branch
+-Execute will update the BHT depending on eInst.brTaken
+-a second epoch will be needed to deal with instructions being poisoned at the decode stage
+-execute should read the BHT before updating the BTB 
+-the BHT will only be trained on branch instructions
+-the BHT should increase the IPC(except when there are a lot of JALR instructions)
+
+7)
+without BHT 1007/3028: 3325
+with BHT:1007/2667 = .3775
+~15% increase in performace
+
+8)
+bpred_j
+with JAL not moved(normal six stage) = 1803/2167 = .8320
+with JAL moved(six stage with BHT and jal done in decode): 1804/3613 = .49931
+imrpovement:
+
+bpred_j_noloop
+with JAL not moved = 34/141 = .2411
+with JAL moved: 35/72 = .4861
+improvement: ~100%
+9)
+median: 4015/8747= .45901
+	improvement: ~ 0%
+multiply: 20893/33718 = .6196
+	improvement: ~1%
+qsort: .3305
+	improvement ~ 1%
+vvadd: .6150
+	improvement:
+towers: .7274
+	improvement:
+
+10) I spent about 15 hours 
+
+Good job! I just noticed that you misused the BHT for jump:
+135                         $display("bht prediction differs from predPc at pc:", d2r.pc);
+136                         pcReg[1] <= bht.ppcDP(f2dFifo.first.pc,x);
+137                         decEpoch[1] <= !decEpoch[1];
+138                         d2r.predPc = bht.ppcDP(f2dFifo.first.pc, x);
+
+ (BHT is used to know if a branch jump or does not jump (not where it jumps). A
+jump always jump, so BHT for J is not required and useless.)
+
+As you don't train your bht on jump (which is good). I fear that your btb
+prediction (which is going to be good after the first jump), is gonna get
+killed at decode stage because you use your bht will think that it does not
+jump (when definitely it does jump! It's a jump instruction). So on jump your
+btb predict correctly, but get killed in decode, that think it's a
+misprediction when it's not, and so J immediate takes forever.
+
+(-5)
+
+125-5 = 120 96%
+

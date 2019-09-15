@@ -1,0 +1,45 @@
+1. 
+median
+Cycles = 54464
+Insts  = 4016
+IPC = .0737
+multiply
+Cycles = 227024
+Insts  = 20894
+IPC = .0920
+qsort
+Cycles = 1512193
+Insts  = 123929
+IPC = .0819
+tower
+Cycles = 56246
+Insts  = 6097
+IPC = .1083
+vvadd
+Cycles = 21664
+Insts  = 2409
+IPC = .1111
+
+2.
+median
+Cycles = 12792
+Insts  = 4015
+IPC = .3138
+multiply
+Cycles = 43319
+Insts  = 20893
+IPC - .4823
+qsort
+Cycles = 408626
+Insts  = 123928
+IPC = .30327
+tower
+Cycles = 18985
+Insts  = 6097
+IPC = .3211
+vvadd
+Cycles = 5487
+Insts  = 2408
+.4388
+
+40/40

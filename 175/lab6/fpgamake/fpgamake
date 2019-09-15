@@ -1,0 +1,650 @@
+#!/usr/bin/env python
+
+## Copyright (c) 2014 Quanta Research Cambridge, Inc.
+
+## Permission is hereby granted, free of charge, to any person
+## obtaining a copy of this software and associated documentation
+## files (the "Software"), to deal in the Software without
+## restriction, including without limitation the rights to use, copy,
+## modify, merge, publish, distribute, sublicense, and/or sell copies
+## of the Software, and to permit persons to whom the Software is
+## furnished to do so, subject to the following conditions:
+
+## The above copyright notice and this permission notice shall be
+## included in all copies or substantial portions of the Software.
+
+## THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+## EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+## MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+## NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+## BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+## ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+## CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+## SOFTWARE.
+
+import os
+import sys
+import re
+import glob
+import shutil
+import argparse
+
+description='''
+Generates Makefiles to synthesize, place, and route verilog.
+
+Each module specified will be synthesized into a separate design
+checkpoint.
+
+If a floorplan is provided, each instance of the synthesized modules
+will be separately placed and routed and then combined into the top
+level design.
+'''
+
+argparser = argparse.ArgumentParser(description=description)
+argparser.add_argument('vfile', help='Verilog file', default=[], nargs='*')
+argparser.add_argument('-y', '--vpath', help='Verilog path', default=[], action='append')
+argparser.add_argument('-D', '--define', help='Verilog defines', default=[], action='append')
+argparser.add_argument('--header', help='Verilog headers', default=[], action='append')
+argparser.add_argument('-o', '--output', help='Output make file', default='synth.mk')
+argparser.add_argument('-s', '--synth', help='Module to synthesize separately', default=[], action='append')
+argparser.add_argument('-B', '--board', help='Target board name', default='zedboard')
+argparser.add_argument('-p', '--part', help='Target part name', default='xc7z020clg484-1')
+argparser.add_argument('--xci', help='XCI file to use', default=[], action='append')
+argparser.add_argument('--chipscope', help='chipscope file to use', default=[], action='append')
+argparser.add_argument('--constraints', help='Constraints file to use (.xdc for Xilinx, .sdc for Altera)', default=[], action='append')
+argparser.add_argument('--implconstraints', help='Physical constraints file to use (.xdc for Xilinx, .sdc for Altera)', default=[], action='append')
+argparser.add_argument('--tcl', help='User tcl script to use', default=[], action='append')
+argparser.add_argument('--floorplan', help='Floorplan XDC.', default=None)
+argparser.add_argument('--preserve-clock-gates', help='Do not delete clock gate pins if set to 1', default=0)
+argparser.add_argument('--report-nworst-timing-paths', help='Number of unique failing timing paths to report.', default='')
+argparser.add_argument('-F', '--command', help='Command file', default=[], action='append')
+argparser.add_argument('-t', '--top', help='Top verilog file')
+argparser.add_argument('-b', '--bitfile', help='Bit file to generate', default='system.bit')
+argparser.add_argument('--cachedir', help='Cache directory', default='Cache')
+argparser.add_argument('-v', '--verbose', help='Verbose operation', action='store_true', default=False)
+argparser.add_argument('--debug', help='Debug operation', action='store_true', default=False)
+argparser.add_argument('--prtop', help='Filename of previously synthesized top level for partial reconfiguration', default='')
+argparser.add_argument('--reconfig', help='module instance names to set as reconfigurable', default=[], action='append')
+
+verilog_files=[]
+module_instances={}
+modules_used={}
+modules_graph={}
+all_module_instances={}
+modules_visited={}
+verilog_used={}
+vhdl_used={}
+vhdl_libraries_used={}
+constraint_files={}
+impl_constraint_files={}
+
+parameterizedModuleRe = r'^\s*(\w+)\s*#'
+plainModuleRe = r'^\s*(\w+)\s+(\w+)\s*\(?'
+vhdlLibraryRe = r'^\s*library\s+(\w+);'
+vhdlComponentRe = r'^\s*component\s+(\w+)'
+
+verilog_keywords = ['assign', 'defparam', 'input', 'module', 'output', 'parameter', 'reg', 'wire', 'if', 'else', 'or', 'integer', 'negedge', 'localparam', 'initial', 'genvar', 'time', 'function', 'generate']
+
+def find_in_path(fname, path):
+    (basename,ext) = os.path.splitext(fname)
+    extensions = ['.v', '.vhd', '.vhdl']
+    if len(ext)>0:
+        extensions = [ext]
+    for ext in extensions:
+        fname = basename + ext
+        for p in path:
+            if os.path.exists(os.path.join(p, fname)):
+                return os.path.join(p, fname)
+            if os.path.exists(os.path.join(p, fname.upper())):
+                return os.path.join(p, fname.upper())
+            if os.path.exists(os.path.join(p, fname.lower())):
+                return os.path.join(p, fname.lower())
+    return None
+
+# find a path between two nodes in a graph
+# graph is a dictionary whose keys are the nodes of the graph
+def graph_find_path(graph, start, end, path=[]):
+    path = path + [start]
+    if start == end:
+        return path
+    if not graph.has_key(start):
+        return None
+    for node in graph[start]:
+        if node not in path:
+            newpath = graph_find_path(graph, node, end, path)
+            if newpath: return newpath
+    return None
+
+def is_a_file(fname, path):
+    if os.path.isfile(fname):
+        return fname
+    for p in path:
+        if os.path.isfile(os.path.join(p, fname)):
+            return os.path.join(p, fname)
+    return None
+
+def map_partname_to_family(partname):
+    family=''
+    mapping={'5sg': '\"StratixV\"',
+             'ep4': '\"StratixIV\"',
+             'xc7':  '\"Virtex7\"',
+             'xczu':  '\"ZynqUltrascale\"',
+             'xcku':  '\"KintexUltrascale\"',
+             'xcvu':  '\"VirtexUltrascale\"',
+             }
+    prefixes = (partname[0:3].lower(), partname[0:4].lower())
+    for prefix in prefixes:
+        if prefix in mapping:
+            family = mapping[prefix]
+    if not family:
+        print "Unknown partname %s" % partname
+    return family
+
+def add_to_verilog_used(parent_partition, submodule):
+    if verilog_used.has_key(parent_partition):
+        verilog_used[parent_partition].append(submodule)
+    else:
+        verilog_used[parent_partition] = [submodule]
+
+def add_to_vhdl_used(parent_partition, submodule):
+    if vhdl_used.has_key(parent_partition):
+        vhdl_used[parent_partition].append(submodule)
+    else:
+        vhdl_used[parent_partition] = [submodule]
+
+def add_to_vhdl_libraries_used(parent_partition, submodule):
+    if vhdl_libraries_used.has_key(parent_partition):
+        vhdl_libraries_used[parent_partition].append(submodule)
+    else:
+        vhdl_libraries_used[parent_partition] = [submodule]
+
+def scan_module(module, parent_partition=None, parent_module=None):
+    if options.verbose:
+        print 'scanning module %s ====================' % module
+    vpath = find_in_path(module, options.vpath)
+    modules_visited[module] = vpath
+    immediate_parent_module = None
+    if not parent_partition:
+        parent_partition = module
+    submodules=[]
+    if not vpath or not os.path.exists(vpath):
+        return
+    vlist = [vpath]
+    vseen = []
+    while True:
+        if vlist == []:
+            break
+        vpath = vlist.pop()
+        if vpath in vseen:
+            continue
+        vseen.append(vpath)
+        immediate_parent_module=os.path.splitext(os.path.basename(vpath))[0]
+        if options.debug:
+            print 'scan_module, scanning', vpath
+        for line in open(vpath):
+            m = re.match(plainModuleRe, line)
+            m2 = re.match(parameterizedModuleRe, line)
+            ml = re.match(vhdlLibraryRe, line)
+            mc = re.match(vhdlComponentRe, line)
+            if ml:
+                library = ml.group(1)
+                #print 'vhdl library', ml.group(1)
+                for d in options.vpath:
+                    if os.path.basename(d) == library:
+                        add_to_vhdl_libraries_used(parent_partition, d)
+                        for f in glob.glob(os.path.join(d, "*.vhd*")):
+                            if f not in vseen:
+                                vlist.append(f)
+            elif mc or m:
+                if mc:
+                    submodule=mc.group(1)
+                    inst = None
+                else:
+                    submodule=m.group(1)
+                    inst=m.group(2)
+                if submodule in verilog_keywords:
+                    continue
+                if inst in verilog_keywords:
+                    continue
+                #print 'submodule', submodule, inst
+                submodules.append(submodule)
+                if submodule in options.synth:
+                    if options.verbose:
+                        print 'separate synth', submodule, inst
+                    if module_instances.has_key(submodule):
+                        module_instances[submodule].append(inst)
+                    else:
+                        module_instances[submodule] = [inst]
+                    if modules_used.has_key(parent_partition):
+                        modules_used[parent_partition].append(submodule)
+                    else:
+                        modules_used[parent_partition] = [submodule]
+                else:
+                    submodulepath=find_in_path(submodule, options.vpath)
+                    if submodulepath and os.path.exists(submodulepath):
+                        vlist.append(submodulepath)
+                        if submodulepath.lower().endswith('.v'):
+                            add_to_verilog_used(parent_partition, submodule)
+                        else:
+                            add_to_vhdl_used(parent_partition, submodule)
+                    elif options.verbose:
+                        print 'fpgamake: could not find module "%s" in path' % submodule
+                # add edges to graph
+                if modules_graph.has_key(immediate_parent_module):
+                    modules_graph[immediate_parent_module].append(submodule)
+                else:
+                    modules_graph[immediate_parent_module] = [submodule]
+                # collect all module to inst mapping
+                if all_module_instances.has_key(submodule):
+                    all_module_instances[submodule].append(inst)
+                else:
+                    all_module_instances[submodule] = [inst]
+            elif m2:
+                submodule = m2.group(1)
+                if submodule in verilog_keywords:
+                    continue
+                #print 'submodule#', m2.group(1)
+                submodules.append(submodule)
+                submodulepath=find_in_path(submodule, options.vpath)
+                if submodulepath:
+                    vlist.append(submodulepath)
+                    if submodulepath.lower().endswith('.v'):
+                        add_to_verilog_used(parent_partition, submodule)
+                    else:
+                        add_to_vhdl_used(parent_partition, submodule)
+
+def process_modules():
+    for module in module_instances:
+        vfile = '%s.v' % module
+        vpath = find_in_path(module, options.vpath)
+        if options.debug:
+            print "process_modules, module and vpath"
+            print module, vpath
+        synthdir = os.path.join('Synth', module)
+        if not os.path.isdir(synthdir):
+            os.makedirs(synthdir)
+        shutil.copyfile(vpath, os.path.join(synthdir, vfile))
+
+        stubpath = 'Synth/stubs/%s-stub.v' % module
+        make_stub(vpath, stubpath)
+
+def make_stub(vpath, stubpath):
+    stubdir = os.path.dirname(stubpath)
+    if not os.path.isdir(stubdir):
+        os.makedirs(stubdir)
+    f = open(stubpath, 'w')
+    saw_module = False;
+    for line in open(vpath):
+        m = re.match('^\s*module ', line)
+        if m:
+            saw_module = True
+            f.write("(*black_box*)")
+        if saw_module:
+            matchend = re.match(' +((wire)|(reg)).*', line)
+            if matchend:
+                saw_module = False
+                f.write('endmodule\n')
+            else:
+                f.write(line)
+    f.close()
+
+makefileHeaderTemplate='''
+
+TCLDIR=%(fpgamakedir)s/tcl
+BUILDCACHE=%(buildcache)s
+CACHEDIR = %(cachedir)s
+FLOORPLAN=%(floorplan)s
+FPGAMAKE_PARTNAME=%(partname)s
+FPGAMAKE_BOARDNAME=%(boardname)s
+FPGAMAKE_TOPMODULE=%(topmodule)s
+FPGAMAKE_FAMILY=%(family)s
+VERILOG_DEFINES="%(verilog_defines)s"
+PRESERVE_CLOCK_GATES?=%(preserve_clock_gates)s
+REPORT_NWORST_TIMING_PATHS?=%(report_nworst_timing_paths)s
+include $(TCLDIR)/Makefile.fpgamake.common
+'''
+
+makefileTrailerTemplate='''
+everything: %(bitfile)s
+
+'''
+
+## Xilinx flow
+synth_template='''
+%(module)s_HEADERFILES = %(headerfiles)s
+%(module)s_VFILES = %(module_path)s %(vfiles)s
+%(module)s_VHDFILES = %(vhdfiles)s
+%(module)s_VHDL_LIBRARIES = %(vhdlibraries)s
+%(module)s_STUBS = %(module_stubs)s
+%(module)s_IP = %(xcifiles)s
+%(module)s_SUBINST = %(subinst)s
+%(module)s_PATH = %(module_path)s
+%(module)s_USER_TCL_SCRIPT = %(user_tcl)s
+%(module)s_XDC = %(constraint_files)s
+
+$(eval $(call SYNTH_RULE,%(module)s))
+'''
+
+topdown_template='''
+TopDown_XDC = %(constraint_files)s
+TopDown_NETLISTS = %(module_synth_netlists)s
+TopDown_RECONFIG = %(module_reconfig_netlists)s
+TopDown_SUBINST = %(subinst)s
+TopDown_PRTOP = %(prtop)s
+
+$(eval $(call TOP_RULE,%(inst)s,%(module)s,%(bitfile)s,%(bitbase)s))
+'''
+
+## Altera Flow
+altera_synth_template='''
+%(module)s_HEADERFILES = %(headerfiles)s
+%(module)s_VFILES = %(module_path)s %(vfiles)s
+%(module)s_VHDFILES = %(vhdfiles)s
+%(module)s_VHDL_LIBRARIES = %(vhdlibraries)s
+%(module)s_STUBS = %(module_stubs)s
+%(module)s_PATH = %(module_path)s
+%(module)s_USER_TCL_SCRIPT = %(user_tcl)s
+%(module)s_IP = %(xcifiles)s
+%(module)s_SDC = %(constraint_files)s
+
+$(eval $(call ALTERA_SYNTH_RULE,%(module)s))
+'''
+
+altera_topdown_template='''
+TopDown_HEADERFILES = %(headerfiles)s
+TopDown_VFILES = %(module_path)s %(vfiles)s
+TopDown_VHDFILES = %(vhdfiles)s
+TopDown_VHDL_LIBRARIES = %(vhdlibraries)s
+TopDown_USER_TCL_SCRIPT = %(user_tcl)s
+TopDown_STUBS = %(module_stubs)s
+TopDown_SDC = %(constraint_files)s
+TopDown_NETLISTS = %(module_synth_netlists)s
+TopDown_IP = %(xcifiles)s
+TopDown_PARTITIONS = %(partitions)s
+TopDown_SUBINST = %(subinst)s
+TopDown_PRTOP = %(prtop)s
+
+$(eval $(call ALTERA_TOP_RULE,%(inst)s,%(module)s,%(bitfile)s,%(bitbase)s))
+'''
+
+
+def write_xilinx_makefile():
+    f = open(options.output, 'w')
+    f.write(makefileHeaderTemplate % { 'floorplan': os.path.abspath(options.floorplan) if options.floorplan else '',
+                                       'fpgamakedir': fpgamakedir,
+                                       'topmodule': options.top,
+                                       'verilog_defines': ' '.join(options.define),
+                                       'partname': options.part,
+                                       'boardname': options.board,
+                                       'family': map_partname_to_family(options.part),
+                                       'buildcache': os.path.abspath(os.path.join(fpgamakedir, '../buildcache/buildcache')) if options.cachedir else '',
+                                       'cachedir': os.path.abspath(options.cachedir) if options.cachedir else '',
+                                       'preserve_clock_gates': options.preserve_clock_gates,
+                                       'report_nworst_timing_paths': options.report_nworst_timing_paths
+                                       })
+    for module in module_instances:
+        subinst = []
+        module_stubs = []
+        if options.top in modules_used:
+            subinst = ([' '.join(module_instances[submodule]) for submodule in set(modules_used[options.top])])
+        if module in modules_used:
+            module_stubs = ['%s-stub.v' % (m) for m in set(modules_used[module])]
+        if options.debug:
+            print 'fpgamake: constraint_files', constraint_files
+        f.write(synth_template % { 'module': module,
+                                   'module_path': find_in_path(module, options.vpath),
+                                   'headerfiles': ' '.join([find_in_path(vfile, options.vpath) for vfile in set(options.header)]) if options.header else '',
+                                   'vfiles': ' '.join([find_in_path(module, options.vpath)]
+                                                      + verilog_files
+                                                      + [find_in_path(vfile, options.vpath) for vfile in set(verilog_used[module])]
+                                                      ) if module in verilog_used else '',
+                                   'vhdfiles': ' '.join([find_in_path(vfile, options.vpath) for vfile in set(vhdl_used[module])]) if module in vhdl_used else '',
+                                   'vhdlibraries': ' '.join(set(vhdl_libraries_used[module])) if module in vhdl_libraries_used else '',
+                                   'subinst': ' '.join(subinst),
+                                   'module_stubs': ' '.join(module_stubs),
+                                   'user_tcl': ' '.join(options.tcl) if options.tcl else '',
+                                   'xcifiles': ' '.join(options.xci),
+                                   'constraint_files': ' '.join([os.path.abspath(xdc) for xdc in constraint_files['top']]) if 'top' in constraint_files else '',
+                                   })
+
+    submodule_synth_netlists = []
+    if options.top in modules_used:
+        for submodule in set(modules_used[options.top]):
+            submodule_synth_netlists.append('Synth/%s/%s-synth.dcp' % (submodule, submodule))
+
+    inst = 'top'
+    topdown_xdc_files = (' '.join([os.path.abspath(xdc) for xdc in impl_constraint_files[inst]]) if (inst in impl_constraint_files) else '')
+
+    submodules = []
+    if options.top in modules_used:
+        submodules = set(modules_used[options.top])
+    substparam = { 'module': options.top,
+                                 'inst': inst,
+                                 'subinst': ' '.join([' '.join(module_instances[submodule]) for submodule in submodules]),
+                                 'oocxdc': ' '.join([' '.join(['Impl/%(inst)s/%(inst)s-ooc-clocks.xdc Impl/%(inst)s/%(inst)s-ooc.xdc'
+                                                               % {'inst': inst}
+                                                               for inst in module_instances[submodule]])
+                                                     for submodule in submodules]),
+                                 'constraint_files': topdown_xdc_files,
+                                 'floorplan': os.path.abspath(options.floorplan) if options.floorplan else '',
+                                 'module_synth_netlists': ' '.join(submodule_synth_netlists),
+                                 'module_reconfig_netlists': ' '.join(options.reconfig) if options.reconfig else '',
+                                 'bitfile': options.bitfile if options.bitfile else '',
+                                 'bitbase': os.path.dirname(os.path.abspath(options.bitfile)) if options.bitfile else '',
+                                 'prtop': options.prtop,
+            }
+    f.write(topdown_template % substparam)
+    f.write(makefileTrailerTemplate % { 'bitfile': options.bitfile if options.bitfile else '' })
+    f.close()
+
+## altera flow
+def write_altera_makefile():
+    f = open(options.output, 'w')
+    f.write(makefileHeaderTemplate % { 'floorplan': os.path.abspath(options.floorplan) if options.floorplan else '',
+                                       'fpgamakedir': fpgamakedir,
+                                       'topmodule': options.top,
+                                       'verilog_defines': ' '.join(options.define),
+                                       'partname': options.part,
+                                       'boardname': options.board,
+                                       'family': map_partname_to_family(options.part),
+                                       'buildcache': os.path.abspath(os.path.join(fpgamakedir, '../buildcache/buildcache')) if options.cachedir else '',
+                                       'cachedir': os.path.abspath(options.cachedir) if options.cachedir else '',
+                                       'preserve_clock_gates': options.preserve_clock_gates,
+                                       'report_nworst_timing_paths': options.report_nworst_timing_paths,
+                                       })
+
+    # Generate lower level project
+    for module in module_instances:
+        # skip top level module
+        if module == options.top:
+            continue
+        subinst = []
+        module_stubs = []
+        if options.top in modules_used:
+            subinst = ([' '.join(module_instances[submodule]) for submodule in set(modules_used[options.top])])
+        if module in modules_used:
+            module_stubs = ['%s-stub.v' % (m) for m in set(modules_used[module])]
+        substparam = { 'module': module,
+                       'inst': ' '.join(module_instances[module]),
+                       'module_path': find_in_path(module, options.vpath),
+                       'headerfiles': ' '.join([os.path.abspath(find_in_path(vfile, options.vpath)) for vfile in set(options.header)]) if options.header else '',
+                       'vfiles': ' '.join([os.path.abspath(find_in_path(module, options.vpath))]
+                                          + [os.path.abspath(find_in_path(vfile, options.vpath)) for vfile in set(verilog_used[module])]
+                                          ) if module in verilog_used else '',
+                       'vhdfiles': ' '.join([os.path.abspath(find_in_path(vfile, options.vpath)) for vfile in set(vhdl_used[module])]) if module in vhdl_used else '',
+                       'vhdlibraries': ' '.join(set(vhdl_libraries_used[module])) if module in vhdl_libraries_used else '',
+                       'module_stubs': ' '.join(module_stubs),
+                       'user_tcl': ' '.join(options.tcl) if options.tcl else '',
+                       'constraint_files': ' '.join([os.path.abspath(xdc) for xdc in constraint_files['top']]) if 'top' in constraint_files else '',
+                       'xcifiles': ' '.join(options.xci),
+                       'floorplan': os.path.abspath(options.floorplan) if options.floorplan else '',
+        }
+        f.write(altera_synth_template % substparam)
+
+    # Generate top level project
+    submodule_synth_netlists = []
+    if options.top in modules_used:
+        for submodule in set(modules_used[options.top]):
+            submodule_synth_netlists.append('Synth/%s/%s-synth.qxp' % (submodule, submodule))
+
+    module = options.top
+    inst = 'top'
+    topdown_xdc_files = (' '.join([os.path.abspath(xdc) for xdc in impl_constraint_files[inst]]) if (inst in impl_constraint_files) else '')
+
+    submodules = []
+    if options.top in modules_used:
+        submodules = set(modules_used[module])
+
+    module_stubs = []
+    if module in modules_used:
+        module_stubs = ['%s-stub.v' % (m) for m in set(modules_used[module])]
+
+    partitions = []
+    for submodule in submodules:
+        path = graph_find_path(modules_graph, options.top, submodule)
+        hierarchy = []
+        for node in path[1:]:
+            hierarchy.append(node+":"+all_module_instances[node][0])
+        partition = "|".join(hierarchy)
+        #print "partition", partition
+        partitions.append(partition)
+
+    substparam = { 'module': options.top,
+                   'inst': inst,
+                   'module_path': find_in_path(module, options.vpath),
+                   'headerfiles': ' '.join([find_in_path(vfile, options.vpath) for vfile in set(options.header)]) if options.header else '',
+                   'vfiles': ' '.join([find_in_path(module, options.vpath)]
+                       + [find_in_path(vfile, options.vpath) for vfile in set(verilog_used[module])]
+                       ) if module in verilog_used else '',
+                   'vhdfiles': ' '.join([find_in_path(vfile, options.vpath) for vfile in set(vhdl_used[module])]) if module in vhdl_used else '',
+                   'vhdlibraries': ' '.join(set(vhdl_libraries_used[module])) if module in vhdl_libraries_used else '',
+                   'module_stubs': ' '.join(module_stubs),
+                   'xcifiles': ' '.join(options.xci),
+                   'partitions' : ' '.join(partitions),
+                   'subinst': ' '.join(subinst),
+                   'oocxdc': ' '.join([' '.join(['Impl/%(inst)s/%(inst)s-ooc-clocks.xdc Impl/%(inst)s/%(inst)s-ooc.xdc'
+                                                 % {'inst': inst}
+                                                 for inst in module_instances[submodule]])
+                                       for submodule in submodules]),
+                   'constraint_files': topdown_xdc_files,
+                   'user_tcl': ' '.join(options.tcl) if options.tcl else '',
+                   'floorplan': os.path.abspath(options.floorplan) if options.floorplan else '',
+                   'module_synth_netlists': ' '.join(submodule_synth_netlists),
+                   'module_reconfig_netlists': ' '.join(options.reconfig) if options.reconfig else '',
+                   'bitfile': options.bitfile if options.bitfile else '',
+                   'bitbase': os.path.dirname(os.path.abspath(options.bitfile)) if options.bitfile else '',
+                   'prtop': options.prtop,
+    }
+    f.write(altera_topdown_template % substparam)
+    f.write(makefileTrailerTemplate % { 'bitfile': options.bitfile if options.bitfile else '' })
+    f.close()
+
+def expand_path():
+    visitlist=[] + options.vpath
+    while visitlist:
+        d = visitlist.pop()
+        for f in glob.glob(os.path.join(d, '*')):
+            if os.path.isdir(f) and not f in options.vpath:
+                options.vpath.append(f)
+                visitlist.append(f)
+
+def is_simulator_option(w):
+    for prefix in ['+']:
+        if w.startswith(prefix):
+            return True
+    return False
+
+if __name__=='__main__':
+    exename = os.path.abspath(sys.argv[0])
+    fpgamakedir = os.path.dirname(exename)
+    options  = argparser.parse_args()
+
+    simulator_options=[]
+    for c in options.command:
+        args=[]
+        f = open(c)
+        for l in f:
+            args.extend([ w for w in l.split() if w.strip() ])
+        saved_vfile = options.vfile
+        (options, unknown_options) = argparser.parse_known_args(args=args, namespace=options)
+        options.vfile = saved_vfile + options.vfile
+        simulator_options.extend(unknown_options)
+
+    ## vfile is a positional argument, which will pick up things like +incdir+foo
+    ## so separate them out manually
+    vfiles = []
+    for w in options.vfile:
+        if is_simulator_option(w):
+            simulator_options.append(w)
+        else:
+            vfiles.append(w)
+    options.vfile = vfiles
+    if simulator_options:
+        print('simulator_options', simulator_options)
+
+    options.vpath.extend(options.vfile)
+    expand_path()
+
+    if options.vfile and options.vfile[0].endswith('.v') and not options.top:
+        options.top = os.path.splitext(os.path.basename(options.vfile[0]))[0]
+        print 'Top module', options.top
+
+    if not options.top:
+        sys.stderr.write('Error: No top module specified.\n')
+        argparser.print_usage(file=sys.stderr)
+        sys.exit(-1)
+    if not find_in_path(options.top, options.vpath):
+        sys.stderr.write('Error: Module %s not found in path %s\n' % (options.top, ' '.join(options.vpath)))
+        sys.exit(-1)
+
+    for c in options.constraints:
+        if not os.path.exists(c):
+            sys.stderr.write('Error: Constraint file %s not found\n' % c)
+            sys.exit(-1)
+
+    for c in options.implconstraints:
+        if not os.path.exists(c):
+            sys.stderr.write('Error: Constraint file %s not found\n' % c)
+            sys.exit(-1)
+
+    for xci in options.xci:
+        if not os.path.exists(xci):
+            sys.stderr.write('Error: XCI file %s not found\n' % xci)
+            sys.exit(-1)
+
+    if options.floorplan:
+        if not os.path.exists(options.floorplan):
+            sys.stderr.write('Error: floorplan file %s not found\n' % options.floorplan)
+            sys.exit(-1)
+
+    for v in options.vpath:
+        if is_a_file(v, options.vpath):
+            verilog_files.append(is_a_file(v, options.vpath))
+
+    if options.prtop == '':
+        module_instances[options.top] = ['top']
+        all_module_instances[options.top] = ['top']
+    scan_module(options.top)
+    for m in options.synth:
+        scan_module(m)
+    if options.debug:
+        print "verilog_files"
+        print verilog_files
+        print "module_instances"
+        print module_instances
+        print "module_used"
+        print modules_used
+        print "verilog_used"
+        print verilog_used
+        print 'modules_graph'
+        print modules_graph
+
+    constraint_files['top']      = options.constraints
+    impl_constraint_files['top'] = options.implconstraints
+
+    process_modules()
+
+    if options.part.upper().startswith('XC'):
+        write_xilinx_makefile()
+    else:
+        write_altera_makefile()
